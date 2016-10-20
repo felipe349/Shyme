@@ -1,0 +1,48 @@
+    /* Barra de busca */
+nav {
+    z-index: 1;
+}
+#logo{
+    color:#157F89;
+    font-size: 45px;
+    margin-top: 30px;
+    text-shadow: 0px -2px 8px rgba(13, 13, 13, 0.8);
+}
+.btn{
+    border: none;
+}
+
+
+/* footer */
+footer {
+    padding: 20px 0;
+    border-radius: 0px;
+    background-color: #fff;
+    box-shadow: 0px -6px 8px rgba(13, 13, 13, 0.2);
+
+}
+
+.copyright {
+    padding: 5px 0;
+    color: #fff;
+    text-align: right;
+        background-color: #157F89;
+    border:1px solid #0A656D;
+   box-shadow: 0px -2px 8px rgba(13, 13, 13, 1);
+}
+.copyright p {
+    margin: 0; 
+}
+#linksImportantes  li{
+    list-style: none;
+
+}
+#linksImportantes  h4{
+    margin-left: 40px;
+}
+#redesSociais  li{
+    list-style: none;
+}
+#redesSociais  h4{ 
+    margin-left: 38px;
+}

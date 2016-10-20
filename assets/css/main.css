@@ -1,0 +1,22 @@
+a, a:after {
+    color:#157F89;
+    display: block;
+    width: auto;
+    height: auto;
+    text-decoration: none !important;
+}
+.conteudo {
+    padding: 20px;
+    background-color: #EDEFF1;
+    margin-bottom: 20px;
+}
+.btn-shyme-default {
+    margin-bottom: 15px;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+    background-color: #34CA3B;
+}
+.clearfix {
+    clear: both;
+}
