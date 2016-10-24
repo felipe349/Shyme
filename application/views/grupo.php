@@ -190,8 +190,7 @@
 
                 <div class="row">
                     <div class="col-md-offset-1 col-md-10 conteudo">
-                <?php $i = 0 ?>
-                <?php foreach($resultadoP as $resP) { if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 33) { ?>
+                <?php  $i=0; foreach($resultadoP as $resP) { if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 33) { ?>
                         <div class="post-objeto">
                             <div class="media-left">
                                 <img class="media-object" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
@@ -211,7 +210,7 @@
                                 <span class="span-tipo-post">Comunicado</span>
                             </div>
                         </div>
-                <?php } else if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 26) { $i++; ?>
+                <?php } else if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 26) { ?>
                         <div class="post-objeto">
                             <div class="media-left">
                                 <img class="media-object" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
@@ -230,14 +229,16 @@
                                 <!-- <button class="btn-shyme-avaliar">-</button> -->
                                 <span class="span-tipo-post">Duvida</span>
                                 <div class="post-resposta col-md-offset-1 col-md-11">
-                                    <div class="media-left">
+                                    <!--AQUI COMEÇA A PARTE DA RESPOSTA DA DUVIDA!!!!!!-->
+                                    <?php foreach($resultadoR[$i] as $resR){ ?>
+                                     <div class="media-left">
                                         <img class="media-object" src="" alt="Icone usuario">
-                                    </div> <!--AQUI COMEÇA A PARTE DA RESPOSTA DA DUVIDA!!!!!!-->
+                                    </div>
                                     <div class="media-body">
                                         <a href="#">
-                                            <h4 class="media-heading">*Felipe*</h4>
+                                            <h4 class="media-heading"><?php echo $resR['NM_ALUNO']; ?></h4>
                                         </a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        <p><?php echo $resR['DS_RESPOSTA']; ?>
                                         </p>
 
                                         <!-- <alteracao> -->
@@ -247,6 +248,7 @@
                                         <!-- <button class="btn-shyme-avaliar">-</button> -->
                                         <span class="span-tipo-post">Resposta</span>
                                     </div>
+                                    <?php } ?>
                                     </div>
                                     <!--AQUI TERMINA A PARTE DA RESPOSTA DA DUVIDA!!!!!!-->
                                      <!--AQUI COMEÇA A PARTE DE CAMPO DE RESPOSTA!!!!!!-->
@@ -257,7 +259,7 @@
                             </div>
                         </div>
 
-                <?php } }?>
+                <?php $i++;} }?>
                         <div class="col-md-offset-2 col-md-8">
                             <center>
                                 <a href="#">

@@ -94,6 +94,23 @@ public function index(){
                 $grupo = new Grupo();
                 $data['resultado']= $grupo->listarGrupos($_SESSION['id']);
                 $data['resultadoP'] = $db->listarPostagem($_GET['id']);
+                $rP = $db->listarPostagem($_GET['id']);
+                $i = 0;
+                foreach($rP as $resP){
+                    if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 26){
+                        $numeroD[$i] = $resP['CD_POSTAGEM'];
+                        $i++;
+                    }
+                }
+                $i = 0;
+                foreach($numeroD as $nD){
+                        $data['resultadoR'][$i] = $db->listarResposta1($nD);
+                        $i++;
+                }
+            
+                /*$data[0]['resultadoE'] = 13;
+                $data[1]['resultadoE'] = 113;
+                echo "<script>alert(".$data[0]['resultadoE'].");</script>";*/
                 $this->load->helper('url');
                 if($grupoAdmVer == 1){
                     $this->load->view('grupo-adm',$data);                
@@ -140,6 +157,7 @@ public function index(){
                 $db = new Conn();
                 $db->alterarInfoGrupo($_GET['id'],$_GET['dsgru'],$_GET['nomegru']);
             }
+
                 /*
                     $db->pesquisarAlunoGrupo($_GET['q']);
                     $data['membrosPesquisados'] = $stmt->fetchAll(PDO::FETCH_ASSOC);

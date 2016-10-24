@@ -73,7 +73,18 @@
                 <li>
                     <a href="#"class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon bell glyphicon-bell"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a id="change-theme" href="#">Slide SI</a></li>
+			<a href="#"><div class="notification-objeto">
+                            <table>
+                                <tr>
+                                    <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario"></td>
+                                    <td ><h4 class="media-heading titulo-notification">Titulo</h4></td>
+                                </tr>
+                                <tr>
+                                     <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p></td>
+                                </tr>
+                            </table>
+                        </div></a>                        
+			<li><a id="change-theme" href="#">Slide SI</a></li>
                         <li><a href="#">Slide SO</a></li>
                         <li role="separator" class="divider"></li>
 
@@ -92,7 +103,7 @@
                         */
                         ?>
                         
-                        <li><a href="#">Ver Mais</a></li> <!-- Fechar a session quando clicar em sair, ver acima -->
+                        <li><a href="Notificacao">Ver Mais</a></li> <!-- Fechar a session quando clicar em sair, ver acima -->
                     </ul>
                 </li>
             </ul>

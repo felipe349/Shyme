@@ -9,7 +9,7 @@ class Conn extends CI_Controller {
 
     public function trocarPrioridadeGrupo($idAluno,$grupoPrimario,$grupoSecundario){
         $db = $this->dbConn();
-        $st = $db->prepare("CALL trocarGrupoPrincipal(?,?,?);");
+        $st = $db->prepare("CALL trocarGrupoPrincipal2(?,?,?);");
         $st->bindParam(1, $idAluno);
         $st->bindParam(2, $grupoPrimario);
         $st->bindParam(3, $grupoSecundario);
@@ -57,8 +57,7 @@ class Conn extends CI_Controller {
         $st->bindParam(1, $dsGrupo);
         $st->bindParam(2, $nmGrupo);
         $st->bindParam(3, $idGrupo);
-        $st->execute();
-        return $st;
+        return $st->execute();
     }
 
     public function prepare($nmUsuario, $nmSenhaUsuario) {
@@ -100,18 +99,17 @@ class Conn extends CI_Controller {
             VALUES (?,?);");
         $st->bindParam(1,$texto);
         $st->bindParam(2,$idAluno);
-        //$db = $this->adicionarTreplica();
-        return $st->execute();
+        $st->execute();
+        $db = $this->adicionarTreplica($idPostagem);
+        return $st;
     }
 
-    /*public function adicionarTreplica($idResposta,$idPostagem){
+    public function adicionarTreplica($idPostagem){
         $db = $this->dbConn();
-        $st = $db->prepare("INSERT INTO TREPLICA VALUES ((SELECT cd_resposta FROM resposta,?)");
-        $st->bindParam(1,$idResposta);
-        $st->bindParam(2,$idPostagem);
+        $st = $db->prepare("INSERT INTO TREPLICA VALUES ((SELECT max(cd_resposta) FROM resposta),?)");
+        $st->bindParam(1,$idPostagem);
         $st->execute();
-    }    */
-
+    } 
 
 //FALTA COMPLETAR TOTALMENTE, FALTA COISAAAAS
     public function listarPostagem($idGrupo) {
@@ -121,16 +119,37 @@ class Conn extends CI_Controller {
         $stmt->execute();
         return $stmt;
     }
-    //PRECISO DA AJUDA DO GUSTAVO : A PARTIR DA TREPLICA PUXAR TODAS AS RESPOSTAS DAQUELA PERGUNTA
-    /*public function listarResposta(){
+   
+   public function listarResposta($idPostagem){
         $db = $this->dbConn();
-        $st = $db->prepare("SELECT R.DS_RESPOSTA, A.NM_ALUNO FROM RESPOSTA R, ALUNO A WHERE R.CD_RESPOSTA = (SELECT CD_RESPOSTA FROM TREPLICA WHERE CD_POSTAGEM = ?) AND A.NM_ALUNO = (SELECT NM_ALUNO FROM ALUNO WHERE CD_MATRICULA =?);");
-    }*/
+        $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, A.NM_ALUNO FROM 
+            RESPOSTA R, ALUNO A, TREPLICA T, POSTAGEM P
+            WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
+            AND R.CD_RESPOSTA = T.CD_RESPOSTA
+            AND P.CD_POSTAGEM = T.CD_POSTAGEM
+            AND P.CD_POSTAGEM=?;");
+        $st->bindParam(1,$idPostagem);
+        $st->execute();
+        return $st;
+    }
+
+    public function listarResposta1($idPostagem){
+        $db = $this->dbConn();
+        $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, A.NM_ALUNO FROM 
+            RESPOSTA R, ALUNO A, TREPLICA T, POSTAGEM P
+            WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
+            AND R.CD_RESPOSTA = T.CD_RESPOSTA
+            AND P.CD_POSTAGEM = T.CD_POSTAGEM
+            AND P.CD_POSTAGEM=? LIMIT 1;");
+        $st->bindParam(1,$idPostagem);
+        $st->execute();
+        return $st;
+    }
 
     //GUSTAVO VAI FAZER O SELECT, ESSA FUNÇÃO É NO CASO DA PAGINA DA DUVIDA
     public function listarUmaPostagem($idPostagem){
         $db = $this->dbConn();
-        $st = $db->prepare("SELECT * FROM POSTAGEM WHERE CD_POSTAGEM=?");
+        $st = $db->prepare("SELECT a.nm_aluno, p.* from aluno a, postagem p, aluno_grupo g WHERE a.cd_matricula = g.cd_matricula and g.cd_aluno_grupo = p.cd_aluno_grupo and p.cd_postagem=?");
         $st->bindParam(1,$idPostagem);
         $st->execute();
         return $st;

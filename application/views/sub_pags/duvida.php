@@ -16,9 +16,9 @@
                             <div class="media-body">
                                 <a href="#">
                                     <?php foreach($resultadoP as $resP){ ?>
-                                    <h4 class="media-heading">*Nome*</h4> 
+                                    <h4 class="media-heading"><?php echo $resP['nm_aluno']; ?></h4> 
                                 </a>
-                                <p><?php echo $resP['ds_postagem'] ;?></p>
+                                <p><?php echo $resP['ds_postagem']; ?></p>
 
                                 <!-- <alteracao> -->
                                 <span id="fav_post" class="glyphicon glyphicon-star-empty"></span>
@@ -27,15 +27,16 @@
                                 <!-- <button class="btn-shyme-avaliar">-</button> -->
                                 <span class="span-tipo-post">Dúvida</span>
                                 </div>
+                                    <?php foreach($resultadoR as $resR) { ?>
                                     <div class="post-resposta col-md-offset-1 col-md-11">
                                     <div class="media-left">
                                         <img class="media-object" src="" alt="Icone usuario">
                                     </div>
                                     <div class="media-body">
                                         <a href="#">
-                                            <h4 class="media-heading">*Felipe*</h4>
+                                            <h4 class="media-heading"><?php echo $resR['NM_ALUNO']; ?></h4>
                                         </a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        <p><?php echo $resR['DS_RESPOSTA']; ?>
                                         </p>
 
                                         <!-- <alteracao> -->
@@ -49,28 +50,7 @@
                                         <span id="resposta-certa" class="glyphicon glyphicon glyphicon-heart-empty" data-toggle="modal" data-target="#myModal2"></span>
                                     </div>
                                 </div>
-                                <div class="post-resposta col-md-offset-1 col-md-11">
-                                    <div class="media-left">
-                                        <img class="media-object" src="" alt="Icone usuario">
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <h4 class="media-heading">*Felipe*</h4>
-                                        </a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
-
-                                        <!-- <alteracao> -->
-                                        <span id="fav_post" class="glyphicon glyphicon-star-empty"></span>
-                                        <!-- </alteracao> -->
-
-                                        <!-- <button class="btn-shyme-avaliar">-</button> -->
-                                        <span class="span-tipo-post">Resposta</span>
-                                    </div>
-                                    <div class="media-right">
-                                        <span id="resposta-certa" class="glyphicon glyphicon-heart-empty" data-toggle="modal" data-target="#myModal2"></span>
-                                    </div>
-                                </div>
+                                <?php } ?>
                                 <?php } ?>
                                 <div class="col-md-offset-1 col-md-11">
                                     <center>
@@ -79,10 +59,14 @@
                                 </div>
                                     <div class="post-responder col-md-offset-0 col-md-12">
                                         <h4 class="media-heading">Responder</h4>
-                                        <div class="form-group">
-                                                    <textarea class="form-control" placeholder="Digite sua resposta" name="txt_content_post" rows="3"></textarea>
+                                        <form method="post">
+                                            <div class="form-group">
+                                                        <textarea class="form-control" placeholder="Digite sua resposta" name="txt_content_post" rows="3"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
+                                        
+                                            <button name="submitR" class="btn btn-primary" type="submit">Responder</button>
+                                    </form>
                         </div>
 
 
