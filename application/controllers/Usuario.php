@@ -27,7 +27,7 @@ class Usuario extends CI_Controller {
             $_SESSION["nome"] = $row['nm_aluno'];
             $_SESSION["curso"] = $row['curso_aluno'];
             $_SESSION["imagem"] = $row['img_aluno'];
-            $_SESSION["point"] = $row['point_aluno'];
+            $_SESSION["moeda"] = $row['vl_moeda'];
             $_SESSION["primeira"] = 0;
             $_SESSION["grupoAdm"] = 0;
             $valorPreparadoadm = $valor->selectGroupsAdm($_SESSION['id']);

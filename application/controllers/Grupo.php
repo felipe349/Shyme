@@ -102,10 +102,12 @@ public function index(){
                         $i++;
                     }
                 }
-                $i = 0;
-                foreach($numeroD as $nD){
-                        $data['resultadoR'][$i] = $db->listarResposta1($nD);
-                        $i++;
+                    $i = 0;
+                    if(isset($numeroD)){
+                        foreach($numeroD as $nD){
+                            $data['resultadoR'][$i] = $db->listarResposta1($nD);
+                            $i++;
+                    }
                 }
             
                 /*$data[0]['resultadoE'] = 13;
@@ -152,6 +154,7 @@ public function index(){
             }
             //Pesquisar a aluno para adicionar 
             
+
 
             if(isset($_GET['dsgru']) && isset($_GET['nomegru'])){
                 $db = new Conn();
