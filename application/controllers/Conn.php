@@ -9,7 +9,7 @@ class Conn extends CI_Controller {
 
     public function trocarPrioridadeGrupo($idAluno,$grupoPrimario,$grupoSecundario){
         $db = $this->dbConn();
-        $st = $db->prepare("CALL trocarGrupoPrincipal2(?,?,?);");
+        $st = $db->prepare("CALL trocarGrupoPrincipal(?,?,?);");
         $st->bindParam(1, $idAluno);
         $st->bindParam(2, $grupoPrimario);
         $st->bindParam(3, $grupoSecundario);
@@ -104,6 +104,18 @@ class Conn extends CI_Controller {
         return $st;
     }
 
+
+    public function criarGrupo($ds,$idAluno,$nmGrupo,$privacidade) {
+        $db = $this->dbConn();
+        $st = $db->prepare("INSERT INTO GRUPO (nm_grupo,ds_grupo,ic_privado,ic_grupo,tipo_grupo_cd_tipo) 
+            VALUES (?,?,?,1,2)");
+        $st->bindParam(1,$nmGrupo);
+        $st->bindParam(2,$ds);
+        $st->bindParam(3,$privacidade);
+        $st->execute();
+        return $st;
+    }
+
     public function adicionarTreplica($idPostagem){
         $db = $this->dbConn();
         $st = $db->prepare("INSERT INTO TREPLICA VALUES ((SELECT max(cd_resposta) FROM resposta),?)");
@@ -165,7 +177,11 @@ class Conn extends CI_Controller {
     
     public function listarPostagemPerfil($idAluno) {
         $db = $this->dbConn();
-        $stmt = $db->prepare("SELECT p.cd_postagem, p.ds_postagem, p.img_postagem, p.dt_postagem FROM POSTAGEM p , aluno_grupo a where a.cd_aluno_grupo =(SELECT CD_ALUNO_GRUPO FROM ALUNO_GRUPO WHERE CD_MATRICULA = ?) and a.cd_aluno_grupo = p.cd_aluno_grupo");
+        $stmt = $db->prepare("SELECT p.cd_postagem, p.ds_postagem, p.img_postagem, p.dt_postagem FROM POSTAGEM p , aluno_grupo a 
+where a.cd_aluno_grupo in (SELECT CD_ALUNO_GRUPO FROM ALUNO_GRUPO WHERE CD_MATRICULA = ?) 
+and a.cd_aluno_grupo = p.cd_aluno_grupo
+order by p.dt_postagem desc
+limit 3;");
          $stmt->bindParam(1, $idAluno);
         $stmt->execute();
         return $stmt;

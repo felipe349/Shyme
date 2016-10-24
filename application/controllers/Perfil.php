@@ -16,10 +16,14 @@ class Perfil extends CI_Controller {
                 $grupo = new Grupo();
                 $data['grupoPrimario']= $grupo->listarGruposPrimarios($_SESSION['id']);
                 $data['grupoSecundario']= $grupo->listarGruposSecundarios($_SESSION['id']);
+                $data['postPerfil']= $db->listarPostagemPerfil($_SESSION['id']);
 
-            if(isset($_GET['gp']) && isset($_GET['gs'])){
-                $db->trocarPrioridadeGrupo($_SESSION['id'],$_GET['gp'],$_GET['gs']);
-            }
+                if(isset($_GET['nmgrupo']) && isset($_GET['dsgrupo']) && isset($_GET['privacidade'])){
+                    $db->criarGrupo($_GET['dsgrupo'],$_SESSION['id'],$$_GET['nmgrupo'],$$_GET['privacidade']);
+                }
+                if(isset($_GET['gp']) && isset($_GET['gs'])){
+                    $db->trocarPrioridadeGrupo($_SESSION['id'],$_GET['gp'],$_GET['gs']);
+                }
                 $this->load->view('perfil',$data);
 	} else{
             header('Location:Login');
