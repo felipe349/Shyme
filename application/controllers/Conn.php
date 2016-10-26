@@ -69,6 +69,14 @@ class Conn extends CI_Controller {
         return $st;
     }
 
+    public function selectStud($nmAluno) {
+    $nmAluno = "%".$nmAluno."%";
+        $db = $this->dbConn();
+        $stmt = $db->prepare("SELECT cd_matricula, nm_aluno FROM aluno WHERE nm_aluno LIKE ?");
+        $stmt->bindParam(1, $nmAluno);
+        $stmt->execute();
+        return $stmt;
+    }
     public function adicionarComunicado($prioridade, $idAluno, $texto, $idGrupo, $imagem) {
         $db = $this->dbConn();
         $st = $db->prepare("INSERT INTO POSTAGEM (cd_prioridade,cd_aluno_grupo,TIPO_POSTAGEM_cd_tipo_postagem,ds_postagem,dt_postagem,img_postagem)
@@ -112,6 +120,15 @@ class Conn extends CI_Controller {
         $st->bindParam(1,$nmGrupo);
         $st->bindParam(2,$ds);
         $st->bindParam(3,$privacidade);
+        $st->execute();
+        return $st;
+    }
+    public function nomearAdm($idAluno,$nmGrupo) {
+        $db = $this->dbConn();
+        $st = $db->prepare("INSERT INTO ADMINISTRADOR_GRUPO (nm_grupo,cd_administrador,dt_adm_grupo) 
+            VALUES (?,?,NOW())");
+        $st->bindParam(1,$nmGrupo);
+        $st->bindParam(2,$idAluno);
         $st->execute();
         return $st;
     }
@@ -232,10 +249,10 @@ limit 3;");
      * @param2 - código do grupo
      */
 
-    public function addMembers($cdGrupo, $cdUsuario) {
+    public function adicionarMembro($cdGrupo, $cdUsuario) {
         $db = $this->dbConn();
-        $stmt = $db->prepare("INSERT INTO aluno_grupo (cd_grupo, cd_matricula) "
-                . "VALUES (?, ?)");
+        $stmt = $db->prepare("INSERT INTO aluno_grupo (cd_grupo, cd_matricula,prioridade_grupo,IC_ALUNO_GRUPO) "
+                . "VALUES (?, ?,0,1)");
         $stmt->bindParam(1, $cdGrupo);
         $stmt->bindParam(2, $cdUsuario);
         $stmt->execute();

@@ -50,7 +50,15 @@ class Grupo extends CI_Controller{
         return $result;
     }
 
-
+    public function adicionarMembro($cdGrupo, $cdUsuario){
+        $conn = new Conn;
+        $result = $conn->adicionarMembro($cdGrupo, $cdUsuario);
+        if ($result->rowCount() !== 0) {
+            echo "Adicionado com sucesso!";
+        } else {
+            echo "Erro no banco de dados.";
+        }
+    }
 
 
 
@@ -160,6 +168,25 @@ public function index(){
                 $db = new Conn();
                 $db->alterarInfoGrupo($_GET['id'],$_GET['dsgru'],$_GET['nomegru']);
             }
+            if(isset($_POST['q'])){
+                $db = new Conn();
+                $result = $db->adicionarMembro($_GET['id'], $_POST['q']);
+                if ($result->rowCount() !== 0) {
+                    echo "Adicionado com sucesso!";
+                } else {
+                    echo "Erro no banco de dados.";
+                }
+            }
+            if(isset($_POST['codigo'])){
+                $db = new Conn();
+                echo 'oi';
+                $result = $db->nomearAdm($_GET['id'], $_POST['codigo']);
+                if ($result->rowCount() !== 0) {
+                    echo "Adicionado com sucesso!";
+                } else {
+                    echo "Erro no banco de dados.";
+                }
+            }
 
                 /*
                     $db->pesquisarAlunoGrupo($_GET['q']);
@@ -172,5 +199,14 @@ public function index(){
         else {
                 header('Location:Login');
             }
+    }
+
+
+    public function index2($cdUsuario, $cdGrupo){ 
+        adicionarMembro($cdGrupo, $cdUsuario);
+    }
+    
+    public function index3($cdUsuario, $cdGrupo){
+        tornarAdministrador($cdUsuario, $cdGrupo);
     }
 }

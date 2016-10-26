@@ -49,6 +49,12 @@ class Usuario extends CI_Controller {
             return 0;
         }
     }
+
+    public function pesquisarPessoas($nmAluno){
+        $conn = new Conn;
+        $result = $conn->selectStud($nmAluno);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
     // GETTTERS
    /* public function __get($atrib){
           return $this->$atrib;
