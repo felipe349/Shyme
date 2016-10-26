@@ -63,4 +63,5 @@ class Usuario extends CI_Controller {
     public function __set($atrib, $value){
           $this->$atrib = $value;
       }*/
+      
 }

@@ -110,7 +110,7 @@
             <!--Alteração-->
             <ul class="nav navbar-nav navbar-right">
                 <div id="container-moeda">
-                    <img src="" />
+                    <img src=""/><?php echo $_SESSION['moeda']; ?>
                     <p><?php 
                             $connect = new Conn(); 
                             $valMoeda = $connect->verificarMoeda($_SESSION['id']); //Nao sei se precisa verificar se session existe aqui
