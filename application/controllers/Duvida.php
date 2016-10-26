@@ -2,10 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once 'Usuario.php';
 require_once 'Conn.php';
+require_once 'Moeda.php';
 class Duvida extends CI_Controller {
     
     public function index()
-    {       
+    {   
+        $moeda = new Moeda(); //ATUALIZACAO DE MOEDAS
+        $moeda->atMoeda();    // LALALA
         $db = new Conn();
         $data['resultadoP'] = $db->listarUmaPostagem($_GET['id']);
         $data['resultadoR'] = $db->listarResposta($_GET['id']);

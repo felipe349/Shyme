@@ -2,9 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once 'Conn.php';
 require_once 'Usuario.php';
+require_once 'Moeda.php';
 
 class Grupo extends CI_Controller{
     
+
     private $nmGrupo;
     private $cdGrupo;
     private $cdMembros;
@@ -63,6 +65,8 @@ class Grupo extends CI_Controller{
 
 
 public function index(){
+         $moeda = new Moeda(); //ATUALIZACAO DE MOEDAS
+         $moeda->atMoeda();    // LALALA
          if(isset($_SESSION['id'])){
             $conn = new Conn();
             $grupoAdmVer = 0;
