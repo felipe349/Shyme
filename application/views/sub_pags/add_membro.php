@@ -56,11 +56,11 @@
            });
            
            $("#btn-add-membro").click(function(){
-                alert('oi');
                var url_atual = location.search.slice(1);
                var items = url_atual.split("&");
                var texto = "q="+selected[1];
                var url  = '.././index.php/Grupo?'+items[0]+'&'+items[1];
+               alert(url);
                $.ajax({
                   type: 'POST',
                   url: url,

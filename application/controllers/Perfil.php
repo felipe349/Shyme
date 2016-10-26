@@ -2,14 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once 'Usuario.php';
 require_once 'Grupo.php';
-require_once 'Moeda.php';
 class Perfil extends CI_Controller {
 
 	
 	public function index()
 	{
-         $moeda = new Moeda(); //ATUALIZACAO DE MOEDAS
-         $moeda->atMoeda();    // LALALA
             if(isset($_SESSION['id'])){
                 $this->load->helper('url');
            //     if($_SESSION['primeira']==1){

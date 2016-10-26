@@ -199,7 +199,6 @@
         
     $(document).ready(function(){
                 $('#btn-change-group').click(function() {
-                    alert('oi');
                     var grupri = "";
                     var grusec = "";
                     //Executa Loop entre todas as Radio buttons com o name de valor

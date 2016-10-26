@@ -7,14 +7,6 @@ class Conn extends CI_Controller {
         return new PDO("mysql:host=localhost;dbname=db_shyme", "root", "");
     }
 
-    public function atualizarMoeda(){
-        $db = $this->dbConn();
-        $st = $db->prepare("SELECT vl_moeda FROM aluno WHERE cd_matricula = ?");
-        $st->bindParam(1,$_SESSION['id']);
-        $st->execute();
-        return $st;
-    }
-
     public function trocarPrioridadeGrupo($idAluno,$grupoPrimario,$grupoSecundario){
         $db = $this->dbConn();
         $st = $db->prepare("CALL trocarGrupoPrincipal(?,?,?);");
@@ -133,7 +125,7 @@ class Conn extends CI_Controller {
     }
     public function nomearAdm($idAluno,$nmGrupo) {
         $db = $this->dbConn();
-        $st = $db->prepare("INSERT INTO ADMINISTRADOR_GRUPO (nm_grupo,cd_administrador,dt_adm_grupo) 
+        $st = $db->prepare("INSERT INTO ADMINISTRADOR_GRUPO (cd_grupo,cd_administrador,dt_adm_grupo) 
             VALUES (?,?,NOW())");
         $st->bindParam(1,$nmGrupo);
         $st->bindParam(2,$idAluno);

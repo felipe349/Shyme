@@ -77,7 +77,7 @@
 
                 <div class="row">
                     <div class="col-md-offset-1 col-md-10 conteudo">
-                <?php $i=0; foreach($resultadoP as $resP) { if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 33) { ?>
+                <?php foreach($resultadoP as $resP) { if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 33) { ?>
                         <div class="post-objeto">
                             <a href="" class="close remover-post"><p>x</p></a>
                             <div class="media-left">
@@ -118,16 +118,14 @@
                                 <!-- <button class="btn-shyme-avaliar">-</button> -->
                                 <span class="span-tipo-post">Duvida</span>
                                 <div class="post-resposta col-md-offset-1 col-md-11">
-                                <!--AQUI COMEÇA A PARTE DA RESPOSTA DA DUVIDA!!!!!!-->
-                                <?php foreach($resultadoR[$i] as $resR){ ?>
                                     <div class="media-left">
                                         <img class="media-object" src="" alt="Icone usuario">
-                                    </div> 
+                                    </div> <!--AQUI COMEÇA A PARTE DA RESPOSTA DA DUVIDA!!!!!!-->
                                     <div class="media-body">
                                         <a href="#">
-                                            <h4 class="media-heading"><?php echo $resR['NM_ALUNO']; ?></h4>
+                                            <h4 class="media-heading">*Felipe*</h4>
                                         </a>
-                                        <p><?php echo $resR['DS_RESPOSTA']; ?>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                         </p>
 
                                         <!-- <alteracao> -->
@@ -137,21 +135,20 @@
                                         <!-- <button class="btn-shyme-avaliar">-</button> -->
                                         <span class="span-tipo-post">Resposta</span>
                                     </div>
-                                     <?php } ?>
                                     </div>
                                     <!--AQUI TERMINA A PARTE DA RESPOSTA DA DUVIDA!!!!!!-->
                                      <!--AQUI COMEÇA A PARTE DE CAMPO DE RESPOSTA!!!!!!-->
                                      <div class="post-responder col-md-offset-0 col-md-12">
                                         <h4 class="media-heading">Responder</h4>
-                                       <div class="post-responder col-md-offset-0 col-md-12">
-                                        <a class="btn btn-primary" role="button" href="Duvida?id=<?php echo $resP['CD_POSTAGEM'];?>">Responder</a>
-                                    </div>
+                                        <div class="form-group">
+                                                    <textarea class="form-control" placeholder="Digite sua resposta" name="txt_content_post" rows="3"></textarea>
+                                        </div>
                                     </div>
                                      <!--AQUI TERMINA A PARTE DE CAMPO DE RESPOSTA!!!!!!-->
                             </div>
                         </div>
 
-                <?php $i++;} }?>
+                <?php } }?>
                         <div class="col-md-offset-2 col-md-8">
                             <center>
                                 <a href="#">
