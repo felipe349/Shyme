@@ -1,5 +1,17 @@
 <head>
     <link rel="stylesheet" href="<?php echo asset_url(); ?>css/header.css" />
+    <script>
+    $(document).ready(function() {
+        $( '.dropdown' ).hover(
+            function(){
+                $(this).children('.sub-menu').slideDown(200);
+            },
+            function(){
+                $(this).children('.sub-menu').slideUp(200);
+            }
+        );
+    }); // end ready
+</script>
 </head>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -42,7 +54,7 @@
             </form>
          
 
-            <ul class="nav navbar-nav navbar-right"><!-- Dropdown Usuario.-->
+            <ul class="nav navbar-nav navbar-right dropdown-ul"><!-- Dropdown Usuario.-->
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo strtok($_SESSION['nome'], ' ')?><span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -72,20 +84,35 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="#"class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon bell glyphicon-bell"></span></a>
-                    <ul class="dropdown-menu">
-			<a href="#"><div class="notification-objeto">
+                    <ul class="dropdown-menu dropdown-notification">
+                        <a href="#"><div class="notification-objeto">
                             <table>
                                 <tr>
-                                    <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario"></td>
+                                    <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario">
+</td>
                                     <td ><h4 class="media-heading titulo-notification">Titulo</h4></td>
                                 </tr>
                                 <tr>
-                                     <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p></td>
+                                     <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p>
+</td>
                                 </tr>
                             </table>
-                        </div></a>                        
-			<li><a id="change-theme" href="#">Slide SI</a></li>
-                        <li><a href="#">Slide SO</a></li>
+                        </div></a>
+
+                        <a href="#"><div class="notification-objeto">
+                            <table>
+                                <tr>
+                                    <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario">
+</td>
+                                    <td ><h4 class="media-heading titulo-notification">Titulo</h4></td>
+                                </tr>
+                                <tr>
+                                     <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p>
+</td>
+                                </tr>
+                            </table>
+                        </div></a>
+                        
                         <li role="separator" class="divider"></li>
 
                               <?php
@@ -103,7 +130,7 @@
                         */
                         ?>
                         
-                        <li><a href="Notificacao">Ver Mais</a></li> <!-- Fechar a session quando clicar em sair, ver acima -->
+                        <li><a href="#">Ver Mais</a></li> <!-- Fechar a session quando clicar em sair, ver acima -->
                     </ul>
                 </li>
             </ul>
@@ -111,7 +138,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <div id="container-moeda">
                     <img src="" />
-                    <p><?php 
+                    <p> <!-- Exemplo -->0<!-- Exemplo --> <?php 
                             $connect = new Conn(); 
                             $valMoeda = $connect->verificarMoeda($_SESSION['id']); //Nao sei se precisa verificar se session existe aqui
                             echo($valMoeda);   
@@ -125,4 +152,5 @@
     </div>
     <script src="<?php echo asset_url(); ?>js/header.js"></script>
     <script src="<?php echo asset_url(); ?>js/jquery.min.js"></script>
+
 </nav>
