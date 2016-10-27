@@ -9,10 +9,6 @@
                             <link rel="stylesheet" href="<?php echo asset_url(); ?>css/grupo.css" />
                         </head>
                         <body>
-                            <div class="navbar navbar-fixed-top">
-                                <?php include("header.php"); 
-                                ?>
-                            </div>
                         <div class="post-objeto col-md-12">
                             <div class="media-left">
                                 <img class="media-object" src="" alt="Icone usuario">
