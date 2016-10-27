@@ -35,10 +35,11 @@
                 </nav>
             <div>
             <section id="main-content">
-                <button onclick="comun()" id="bt_criar_post" class="btn btn-shyme-default btn-post">Comunicado</button>
-                <button onclick="duvid()" id="bt_criar_post" class="btn btn-shyme-default btn-post">Duvida</button>
-                <button onclick="mater()" id="bt_criar_post" class="btn btn-shyme-default btn-post">Material</button>
-                
+                <center><div>
+                <button onclick="comun()" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Comunicado</button>
+                <button onclick="duvid()" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Duvida</button>
+                <button onclick="mater()" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Material</button>
+                </div></center>
                 <div id="com" class="row titulo">
                     <div class="col-md-offset-1 col-md-10">
                         <h3>Postar Comunicado</h3>
