@@ -43,11 +43,11 @@ h3{
         width:120px;
         height:160px; 
     border-radius: 2px;
-    -webkit-transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
-        -moz-transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
-         -ms-transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
-          -o-transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
-             transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
+    -webkit-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
+        -moz-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
+         -ms-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
+          -o-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
+             transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
 }
 .hoverzoom:hover > .img-perfil {
     -webkit-transform: scale(1.5);
@@ -67,11 +67,11 @@ h3{
     text-align: center;
     padding: 0px;
  
-    -webkit-transition:  all .8s cubic-bezier(.190, 1.000, .220, 1.000);
-        -moz-transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
-         -ms-transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
-          -o-transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
-             transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000); 
+    -webkit-transition:  all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
+        -moz-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
+         -ms-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
+          -o-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
+             transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000); 
 }
 .hoverzoom:hover .retina {
     opacity: 1;
