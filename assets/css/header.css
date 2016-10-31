@@ -80,13 +80,14 @@ a .descricao-notification{
     bottom: 0;
 }
 #sc_box{
-    width:80px;
+    width:200px;
     border: none;
     background-color: transparent;
     transition: ease-in-out, width 1s ease-in-out;
+
+
 }
 #sc_box:focus{
-    width:400px;
     transition: ease-in-out, width 1s ease-in-out;
     box-shadow: none;
 }
@@ -99,10 +100,11 @@ a .descricao-notification{
     -webkit-box-shadow: inset 0px 5px 15px 0px rgba(22, 140, 151, 0.4);
 -moz-box-shadow:   inset 0px 5px 15px 0px rgba(22, 140, 151, 0.4);
 box-shadow:      inset   0px 5px 15px 0px rgba(22, 140, 151, 0.4);
-    margin-top: 1px;
+    margin-top: 0px;
 }
 .sb_search,
-.sb_search:hover{
+.sb_search:hover,
+.sb_search:active{
     background-color: transparent;
 }
 
@@ -183,6 +185,24 @@ a:hover, span:hover {
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #fff;
 }
+.home{
+    font-size: 18px;
+    margin-top: 0;
+}
+.icon-li:hover .icon-nav{
+    color: white;
+    -webkit-transform: scale(1.15);
+        -ms-transform: scale(1.15);
+        transform: scale(1.15);
+    transition: 0.5s;
+}
+.icon-nav{
+    transition: 0.5s;
+}
+li:hover{
+    
+     
+}
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
       color: #fff;
@@ -217,7 +237,6 @@ box-shadow:      inset   0px 5px 15px 0px rgba(255, 255, 255, 0.2);
 }
 
 #container-moeda img {
-    content: url('../../assets/img/coin.png'); /*chrome*/ 
     float: left;
     margin-left: 0;
     background-color: transparent;
