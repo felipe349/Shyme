@@ -19,7 +19,7 @@ class Perfil extends CI_Controller {
                 $data['postPerfil']= $db->listarPostagemPerfil($_SESSION['id']);
 
                 if(isset($_GET['nmgrupo']) && isset($_GET['dsgrupo']) && isset($_GET['privacidade'])){
-                    $db->criarGrupo($_GET['dsgrupo'],$_SESSION['id'],$_GET['nmgrupo'],$_GET['privacidade']);
+                    $db->criarGrupo($_GET['dsgrupo'],$_SESSION['id'],$$_GET['nmgrupo'],$$_GET['privacidade']);
                 }
                 if(isset($_GET['gp']) && isset($_GET['gs'])){
                     $db->trocarPrioridadeGrupo($_SESSION['id'],$_GET['gp'],$_GET['gs']);
