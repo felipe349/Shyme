@@ -244,8 +244,8 @@
                             privacidade = parseInt($(this).val());
                     })
 
-                    var nome1 = encodeURI($('#nome_grupo').val());
-                    var ds1 = encodeURI($('#ds_grupo').val());
+                    var nome1 = $('#nome_grupo').val();
+                    var ds1 = $('#ds_grupo').val();
                     var data1 = "nmgrupo="+nome1+"&dsgrupo="+ds1+"&privacidade="+privacidade;
                     var url1  = '../index.php/Perfil?'+data1;
                     alert(url1);
