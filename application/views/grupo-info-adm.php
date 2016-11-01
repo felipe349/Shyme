@@ -37,8 +37,8 @@
                     <div class="col-md-offset-1 col-md-10">
                         <h3>Informações</h3>
                         <form method="POST">
-                            <input type="submit" id="sairGrupo" name="sairGrupo" class="btn btn-shyme-default" value="Sair do Grupo">
-                            <input type="submit" id="excluirGrupo" name="excluirGrupo" class="btn btn-shyme-default" value="Excluir Grupo">
+                            <input type="button" id="sairGrupo" name="sairGrupo" class="btn btn-shyme-default" value="Sair do Grupo">
+                            <input type="button" id="excluirGrupo" name="excluirGrupo" class="btn btn-shyme-default" value="Excluir Grupo">
                         </form>
                     </div>
                 </div>
@@ -134,6 +134,29 @@
     <script type="text/javascript">
         
     $(document).ready(function(){
+        $('#sairGrupo').click(function(){
+            var url_atual = location.search.slice(1);
+            var items = url_atual.split("&");
+            var data = "sairGrupo=1";
+            var url  = '.././index.php/Grupo?'+items[0]+'&'+items[1];
+
+               
+            alert(data);
+
+        
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    data: data,
+                    dataType: 'json',
+                    success: function (data) {
+                                    
+                                }
+                            });
+                    
+                                header('Location:Login'); 
+        });
+
         $('#alterar-info').click(function(){
             var url_atual = location.search.slice(1);
             var items = url_atual.split("&");

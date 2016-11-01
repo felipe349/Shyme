@@ -39,9 +39,8 @@
                     <?php foreach($info as $i){?>
 
                         <h3>Informações</h3>
-                        <form method="POST">
-                            <input type="submit" id="sairGrupo" name="sairGrupo" class="btn btn-shyme-default" value="Sair do Grupo">
-                        </form>
+                            <input type="button" id="sairGrupo" name="sairGrupo" class="btn btn-shyme-default" value="Sair do Grupo">
+                       
                     </div>
                 </div>
 
@@ -113,5 +112,34 @@
     <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/grupo.js"></script>
 </body>
+
+<script type="text/javascript">
+        
+    $(document).ready(function(){
+        $('#sairGrupo').click(function(){
+            var url_atual = location.search.slice(1);
+            var items = url_atual.split("&");
+            var data = "sairGrupoq=1";
+            var url  = '.././index.php/Grupo?'+items[0]+'&'+items[1];
+
+               
+            alert(data);
+
+        
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    data: data,
+                    dataType: 'json',
+                    success: function (data) {
+                                    
+                                }
+                            });
+                    header('Location:Login');
+        });
+    });
+                
+    </script>
+
 
 </html>

@@ -27,7 +27,7 @@ class Conn extends CI_Controller {
     }
     public function sairGrupo($idGrupo, $cdMatricula){
         $db = $this->dbConn();
-        $st = $db->prepare("UPDATE ALUNO_GRUPO SET IC_ALUNO_GRUPO=0, IC_PRIORIDADE = 0 WHERE CD_MATRICULA=? AND CD_GRUPO = ?");
+        $st = $db->prepare("UPDATE ALUNO_GRUPO SET IC_ALUNO_GRUPO=0, PRIORIDADE_GRUPO = 0 WHERE CD_MATRICULA=? AND CD_GRUPO = ?");
         $st->bindParam(1, $cdMatricula);
         $st->bindParam(2, $idGrupo);
         $st->execute();
@@ -143,7 +143,7 @@ class Conn extends CI_Controller {
 //FALTA COMPLETAR TOTALMENTE, FALTA COISAAAAS
     public function listarPostagem($idGrupo) {
         $db = $this->dbConn();
-        $stmt = $db->prepare("SELECT AG.CD_ALUNO_GRUPO, A.NM_ALUNO, A.img_aluno, P.DS_POSTAGEM, P.TIPO_POSTAGEM_cd_tipo_postagem, P.CD_POSTAGEM  FROM ALUNO_GRUPO AG, ALUNO A, POSTAGEM P WHERE  AG.CD_GRUPO = ? AND P.CD_ALUNO_GRUPO = AG.CD_ALUNO_GRUPO AND AG.CD_MATRICULA = A.CD_MATRICULA AND P.IC_POSTAGEM = 1 order by p.dt_postagem desc");
+        $stmt = $db->prepare("SELECT A.CD_MATRICULA, AG.CD_ALUNO_GRUPO, A.NM_ALUNO, A.img_aluno, P.DS_POSTAGEM, P.TIPO_POSTAGEM_cd_tipo_postagem, P.CD_POSTAGEM  FROM ALUNO_GRUPO AG, ALUNO A, POSTAGEM P WHERE  AG.CD_GRUPO = ? AND P.CD_ALUNO_GRUPO = AG.CD_ALUNO_GRUPO AND AG.CD_MATRICULA = A.CD_MATRICULA AND P.IC_POSTAGEM = 1 order by p.dt_postagem desc");
          $stmt->bindParam(1, $idGrupo);
         $stmt->execute();
         return $stmt;
@@ -208,7 +208,7 @@ limit 3;");
     //EXCLUIR POSTAGEM PRECISA SER ARRUMADO!!!
     public function excluirPostagem($idPost) {
         $db = $this->dbConn();
-        $st = $db->prepare("UPDATE POSTAGEM SET IC_POSTAGEM=0 WHERE cd_postagem=? limit 1");
+        $st = $db->prepare("UPDATE POSTAGEM SET IC_POSTAGEM=0 WHERE cd_postagem=?");
         $st->bindParam(1, $idPost);
         $st->execute();
         return $st;

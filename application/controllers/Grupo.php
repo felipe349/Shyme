@@ -74,6 +74,12 @@ public function index(){
                     $grupoAdmVer = 0;
                 }
             }
+
+            if(isset($_GET['sairGrupoq'])){
+                $db1 = new Conn();
+                echo $_GET['id'].$_SESSION['id'];
+                $db1->sairGrupo($_GET['id'],$_SESSION['id']);
+            }
             if(isset($_GET['pg'])){
                if($_GET['pg']==2){
                     $grupo = new Grupo();

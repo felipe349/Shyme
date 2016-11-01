@@ -78,8 +78,8 @@
                 <div class="row">
                     <div class="col-md-offset-1 col-md-10 conteudo">
                 <?php foreach($resultadoP as $resP) { if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 33) { ?>
-                        <div class="post-objeto">
-                            <a href="" class="close remover-post"><p>x</p></a>
+                        <div class="post-objeto" id="<?php echo 'cd'.$resP['CD_MATRICULA']; ?>" hidden="">
+                            <button class="close remover-post" id="exculirPost" name="exculirPost"><p>x</p></button>
                             <div class="media-left">
                                 <img class="media-object" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
                             </div>
@@ -100,7 +100,7 @@
                         </div>
                 <?php } else if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 26) { ?>
                         <div class="post-objeto">
-                            <a href="" class="close remover-post"><p>x</p></a>
+                            <button class="close remover-post" id="exculirPost" name="exculirPost"><p>x</p></button>
                             <div class="media-left">
                                 <img class="media-object" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
                             </div>
@@ -172,5 +172,37 @@
     <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
     <script src="<?php echo asset_url(); ?>js/grupo.js"></script>
 </body>
+
+<script type="text/javascript">
+        
+    $(document).ready(function(){
+        $('#exculirPost').click(function(){
+            var a = $('div[id^="cd"]').id;
+            alert(a[1]);
+           /*  var url_atual = location.search.slice(1);
+            var items = url_atual.split("&");
+            var nome = $('#name_group').val();
+            var ds = $('#ds_group').val();
+            var data = "nomegru="+nome+"&dsgru="+ds;
+            var url  = '.././index.php/Grupo?'+items[0]+'&'+items[1];
+
+               
+
+        
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    data: data,
+                    dataType: 'json',
+                    success: function (data) {
+                        
+                    }
+                });
+   */
+
+        });
+    });
+                
+    </script>
 
 </html>
