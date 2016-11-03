@@ -151,12 +151,12 @@ class Conn extends CI_Controller {
    
    public function listarResposta($idPostagem){
         $db = $this->dbConn();
-        $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, A.NM_ALUNO FROM 
-            RESPOSTA R, ALUNO A, TREPLICA T, POSTAGEM P
+         $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, R.IC_RESPOSTA, 
+         A.NM_ALUNO FROM 
             WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
             AND R.CD_RESPOSTA = T.CD_RESPOSTA
             AND P.CD_POSTAGEM = T.CD_POSTAGEM
-            AND P.CD_POSTAGEM=?;");
+             AND P.CD_POSTAGEM=? ORDER BY IC_RESPOSTA DESC;");
         $st->bindParam(1,$idPostagem);
         $st->execute();
         return $st;
@@ -169,7 +169,7 @@ class Conn extends CI_Controller {
             WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
             AND R.CD_RESPOSTA = T.CD_RESPOSTA
             AND P.CD_POSTAGEM = T.CD_POSTAGEM
-            AND P.CD_POSTAGEM=? LIMIT 1;");
+            AND P.CD_POSTAGEM=? ORDER BY R.IC_RESPOSTA DESC LIMIT 1;");
         $st->bindParam(1,$idPostagem);
         $st->execute();
         return $st;
