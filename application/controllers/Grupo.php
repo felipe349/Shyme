@@ -75,10 +75,23 @@ public function index(){
                 }
             }
 
-            if(isset($_GET['sairGrupoq'])){
+            if(isset($_GET['sairGrupo'])){
                 $db1 = new Conn();
                 echo $_GET['id'].$_SESSION['id'];
                 $db1->sairGrupo($_GET['id'],$_SESSION['id']);
+            }
+
+            if(isset($_GET['excluirGrupo'])){
+                $db1 = new Conn();
+                $db1->excluirGrupo($_GET['id']);
+            }
+
+            if(isset($_GET['excluirPost'])){
+                echo $_GET['excluirPost'];
+                $db1 = new Conn();
+                $db1->excluirPostagem($_GET['excluirPost']);
+                             header("Refresh:0");
+
             }
             if(isset($_GET['pg'])){
                if($_GET['pg']==2){
