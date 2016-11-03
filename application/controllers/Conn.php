@@ -4,7 +4,7 @@
 class Conn extends CI_Controller {
 
     public function dbConn() {
-        return new PDO("mysql:host=localhost;dbname=db_shyme_2", "root", "");
+        return new PDO("mysql:host=localhost;dbname=db_shyme", "root", "");
     }
 
     public function trocarPrioridadeGrupo($idAluno,$grupoPrimario,$grupoSecundario){
@@ -149,31 +149,6 @@ class Conn extends CI_Controller {
         return $stmt;
     }
    
-   public function listarResposta($idPostagem){
-        $db = $this->dbConn();
-        $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, A.NM_ALUNO FROM 
-            RESPOSTA R, ALUNO A, TREPLICA T, POSTAGEM P
-            WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
-            AND R.CD_RESPOSTA = T.CD_RESPOSTA
-            AND P.CD_POSTAGEM = T.CD_POSTAGEM
-            AND P.CD_POSTAGEM=?;");
-        $st->bindParam(1,$idPostagem);
-        $st->execute();
-        return $st;
-    }
-
-    public function listarResposta1($idPostagem){
-        $db = $this->dbConn();
-        $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, A.NM_ALUNO FROM 
-            RESPOSTA R, ALUNO A, TREPLICA T, POSTAGEM P
-            WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
-            AND R.CD_RESPOSTA = T.CD_RESPOSTA
-            AND P.CD_POSTAGEM = T.CD_POSTAGEM
-            AND P.CD_POSTAGEM=? LIMIT 1;");
-        $st->bindParam(1,$idPostagem);
-        $st->execute();
-        return $st;
-    }
 
     //GUSTAVO VAI FAZER O SELECT, ESSA FUNÇÃO É NO CASO DA PAGINA DA DUVIDA
     public function listarUmaPostagem($idPostagem){
