@@ -151,13 +151,29 @@ class Conn extends CI_Controller {
    
    public function listarResposta($idPostagem){
         $db = $this->dbConn();
-        $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, A.NM_ALUNO FROM 
+        $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, R.IC_RESPOSTA, A.NM_ALUNO FROM 
             RESPOSTA R, ALUNO A, TREPLICA T, POSTAGEM P
             WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
             AND R.CD_RESPOSTA = T.CD_RESPOSTA
             AND P.CD_POSTAGEM = T.CD_POSTAGEM
-            AND P.CD_POSTAGEM=?;");
+            AND P.CD_POSTAGEM=? ORDER BY IC_RESPOSTA DESC;");
         $st->bindParam(1,$idPostagem);
+        $st->execute();
+        return $st;
+    }
+
+    public function escolherResposta($idResposta){
+        $db = $this->dbConn();
+        $st = $db->prepare("UPDATE RESPOSTA SET IC_RESPOSTA=1 WHERE CD_RESPOSTA = ?");
+        $st->bindParam(1,$idResposta);
+        return $st->execute();
+    }
+
+    public function verificarDonoDuvida($idUsuarioPostagem){
+        $db = $this->dbConn();
+        $st = $db->prepare("SELECT cd_matricula FROM aluno_grupo
+                            WHERE cd_aluno_grupo = ?");
+        $st->bindParam(1,$idUsuarioPostagem);
         $st->execute();
         return $st;
     }
@@ -169,7 +185,7 @@ class Conn extends CI_Controller {
             WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
             AND R.CD_RESPOSTA = T.CD_RESPOSTA
             AND P.CD_POSTAGEM = T.CD_POSTAGEM
-            AND P.CD_POSTAGEM=? LIMIT 1;");
+            AND P.CD_POSTAGEM=? ORDER BY R.IC_RESPOSTA DESC LIMIT 1;");
         $st->bindParam(1,$idPostagem);
         $st->execute();
         return $st;
