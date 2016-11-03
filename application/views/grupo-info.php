@@ -119,24 +119,20 @@
         $('#sairGrupo').click(function(){
             var url_atual = location.search.slice(1);
             var items = url_atual.split("&");
-            var data = "sairGrupoq=1";
+            var data = "sairGrupo=1";
             var url  = '.././index.php/Grupo?'+items[0]+'&'+items[1];
-
-               
-            alert(data);
-
-        
-                $.ajax({
-                    type: 'GET',
-                    url: url,
-                    data: data,
-                    dataType: 'json',
-                    success: function (data) {
-                                    
-                                }
-                            });
-                    header('Location:Login');
+            alert('oi');
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: data,
+            dataType: 'json',
+            success: function (data) {
+                
+            }
         });
+        header('Location:Perfil'); 
+    });
     });
                 
     </script>
