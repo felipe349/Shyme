@@ -6,6 +6,55 @@ class Conn extends CI_Controller {
     public function dbConn() {
         return new PDO("mysql:host=localhost;dbname=db_shyme_2", "root", "");
     }
+     public function listarResposta($idPostagem){
+        $db = $this->dbConn();
+        $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, R.IC_RESPOSTA, A.NM_ALUNO FROM 
+            RESPOSTA R, ALUNO A, TREPLICA T, POSTAGEM P
+            WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
+            AND R.CD_RESPOSTA = T.CD_RESPOSTA
+            AND P.CD_POSTAGEM = T.CD_POSTAGEM
+            AND P.CD_POSTAGEM=? ORDER BY R.IC_RESPOSTA DESC;");
+        $st->bindParam(1,$idPostagem);
+        $st->execute();
+        return $st;
+    }
+
+    public function escolherResposta($idResposta){
+        $db = $this->dbConn();
+        $st = $db->prepare("UPDATE RESPOSTA SET IC_RESPOSTA=1 WHERE CD_RESPOSTA = ?");
+        $st->bindParam(1,$idResposta);
+        return $st->execute();
+    }
+
+    public function verificarDonoDuvida($idUsuarioPostagem){
+        $db = $this->dbConn();
+        $st = $db->prepare("SELECT cd_matricula FROM aluno_grupo
+                            WHERE cd_aluno_grupo = ?");
+        $st->bindParam(1,$idUsuarioPostagem);
+        $st->execute();
+        return $st;
+    }
+
+    public function listarResposta1($idPostagem){
+        $db = $this->dbConn();
+        $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, A.NM_ALUNO FROM 
+            RESPOSTA R, ALUNO A, TREPLICA T, POSTAGEM P
+            WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
+            AND R.CD_RESPOSTA = T.CD_RESPOSTA
+            AND P.CD_POSTAGEM = T.CD_POSTAGEM
+            AND P.CD_POSTAGEM=? ORDER BY R.IC_RESPOSTA DESC LIMIT 1;");
+        $st->bindParam(1,$idPostagem);
+        $st->execute();
+        return $st;
+    }
+
+
+    public function api(){
+        $db = $this->dbConn();
+        $st = $db->prepare("SELECT * FROM TESTE");
+        $st->execute();
+        return $st;
+    }
 
     public function trocarPrioridadeGrupo($idAluno,$grupoPrimario,$grupoSecundario){
         $db = $this->dbConn();
@@ -27,7 +76,7 @@ class Conn extends CI_Controller {
     }
     public function sairGrupo($idGrupo, $cdMatricula){
         $db = $this->dbConn();
-        $st = $db->prepare("UPDATE ALUNO_GRUPO SET IC_ALUNO_GRUPO=0, PRIORIDADE_GRUPO = 0 WHERE CD_MATRICULA=? AND CD_GRUPO = ?");
+        $st = $db->prepare("UPDATE ALUNO_GRUPO SET IC_ALUNO_GRUPO=0, IC_PRIORIDADE = 0 WHERE CD_MATRICULA=? AND CD_GRUPO = ?");
         $st->bindParam(1, $cdMatricula);
         $st->bindParam(2, $idGrupo);
         $st->execute();
@@ -143,42 +192,18 @@ class Conn extends CI_Controller {
 //FALTA COMPLETAR TOTALMENTE, FALTA COISAAAAS
     public function listarPostagem($idGrupo) {
         $db = $this->dbConn();
-        $stmt = $db->prepare("SELECT A.CD_MATRICULA, AG.CD_ALUNO_GRUPO, A.NM_ALUNO, A.img_aluno, P.DS_POSTAGEM, P.TIPO_POSTAGEM_cd_tipo_postagem, P.CD_POSTAGEM  FROM ALUNO_GRUPO AG, ALUNO A, POSTAGEM P WHERE  AG.CD_GRUPO = ? AND P.CD_ALUNO_GRUPO = AG.CD_ALUNO_GRUPO AND AG.CD_MATRICULA = A.CD_MATRICULA AND P.IC_POSTAGEM = 1 order by p.dt_postagem desc");
+        $stmt = $db->prepare("SELECT AG.CD_ALUNO_GRUPO, A.NM_ALUNO, A.img_aluno, P.DS_POSTAGEM, P.TIPO_POSTAGEM_cd_tipo_postagem, P.CD_POSTAGEM  FROM ALUNO_GRUPO AG, ALUNO A, POSTAGEM P WHERE  AG.CD_GRUPO = ? AND P.CD_ALUNO_GRUPO = AG.CD_ALUNO_GRUPO AND AG.CD_MATRICULA = A.CD_MATRICULA AND P.IC_POSTAGEM = 1 order by p.dt_postagem desc");
          $stmt->bindParam(1, $idGrupo);
         $stmt->execute();
         return $stmt;
     }
    
-   public function listarResposta($idPostagem){
-        $db = $this->dbConn();
-         $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, R.IC_RESPOSTA, 
-         A.NM_ALUNO FROM 
-            WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
-            AND R.CD_RESPOSTA = T.CD_RESPOSTA
-            AND P.CD_POSTAGEM = T.CD_POSTAGEM
-             AND P.CD_POSTAGEM=? ORDER BY IC_RESPOSTA DESC;");
-        $st->bindParam(1,$idPostagem);
-        $st->execute();
-        return $st;
-    }
-
-    public function listarResposta1($idPostagem){
-        $db = $this->dbConn();
-        $st = $db->prepare("SELECT R.CD_RESPOSTA, R.DS_RESPOSTA, A.NM_ALUNO FROM 
-            RESPOSTA R, ALUNO A, TREPLICA T, POSTAGEM P
-            WHERE A.CD_MATRICULA = R.CD_RESPOSTA_ALUNO
-            AND R.CD_RESPOSTA = T.CD_RESPOSTA
-            AND P.CD_POSTAGEM = T.CD_POSTAGEM
-            AND P.CD_POSTAGEM=? ORDER BY R.IC_RESPOSTA DESC LIMIT 1;");
-        $st->bindParam(1,$idPostagem);
-        $st->execute();
-        return $st;
-    }
+  
 
     //GUSTAVO VAI FAZER O SELECT, ESSA FUNÇÃO É NO CASO DA PAGINA DA DUVIDA
     public function listarUmaPostagem($idPostagem){
         $db = $this->dbConn();
-        $st = $db->prepare("SELECT a.nm_aluno, p.* from aluno a, postagem p, aluno_grupo g WHERE a.cd_matricula = g.cd_matricula and g.cd_aluno_grupo = p.cd_aluno_grupo and p.cd_postagem=? and IC_POSTAGEM=1");
+        $st = $db->prepare("SELECT a.nm_aluno, p.* from aluno a, postagem p, aluno_grupo g WHERE a.cd_matricula = g.cd_matricula and g.cd_aluno_grupo = p.cd_aluno_grupo and p.cd_postagem=?");
         $st->bindParam(1,$idPostagem);
         $st->execute();
         return $st;
@@ -197,7 +222,6 @@ class Conn extends CI_Controller {
         $stmt = $db->prepare("SELECT p.cd_postagem, p.ds_postagem, p.img_postagem, p.dt_postagem FROM POSTAGEM p , aluno_grupo a 
 where a.cd_aluno_grupo in (SELECT CD_ALUNO_GRUPO FROM ALUNO_GRUPO WHERE CD_MATRICULA = ?) 
 and a.cd_aluno_grupo = p.cd_aluno_grupo
-and p.IC_POSTAGEM=1
 order by p.dt_postagem desc
 limit 3;");
          $stmt->bindParam(1, $idAluno);
@@ -209,7 +233,7 @@ limit 3;");
     //EXCLUIR POSTAGEM PRECISA SER ARRUMADO!!!
     public function excluirPostagem($idPost) {
         $db = $this->dbConn();
-        $st = $db->prepare("UPDATE POSTAGEM SET IC_POSTAGEM=0 WHERE cd_postagem=?");
+        $st = $db->prepare("UPDATE POSTAGEM SET IC_POSTAGEM=0 WHERE cd_postagem=? limit 1");
         $st->bindParam(1, $idPost);
         $st->execute();
         return $st;
@@ -315,7 +339,7 @@ limit 3;");
 
     public function selectVerifyAdm($cdAdmGrupo, $cdGrupo) {
         $db = $this->dbConn();
-        $stmt = $db->prepare("SELECT cd_grupo FROM administrador_grupo WHERE cd_administrador= ? AND cd_grupo = ?");
+        $stmt = $db->prepare("SELECT cd_grupo FROM aluno_grupo WHERE adm_aluno_grupo IS NOT NULL and cd_matricula= ? AND cd_grupo = ?");
         $stmt->bindParam(1, $cdAdmGrupo);
         $stmt->bindParam(2, $cdGrupo);
         $stmt->execute();
@@ -324,7 +348,7 @@ limit 3;");
 
     public function selectGroupsAdm($cdAdmGrupo) {
         $db = $this->dbConn();
-        $stmt = $db->prepare("SELECT cd_grupo FROM administrador_grupo  WHERE cd_administrador = ?");
+        $stmt = $db->prepare("SELECT cd_grupo FROM aluno_grupo  WHERE adm_aluno_grupo IS NOT NULL and cd_matricula=?");
         $stmt->bindParam(1, $cdAdmGrupo);
         $stmt->execute();
         return $stmt;
@@ -397,15 +421,6 @@ limit 3;");
         $stmt->execute();
         return $stmt;
     }
-    
-    public function excluirGrupo($cdGrupo) {
-        $db = $this->dbConn();
-        $stmt = $db->prepare("UPDATE GRUPO SET IC_GRUPO=0 WHERE cd_grupo = ?");
-        $stmt->bindParam(1, $cdGrupo);
-        $stmt->execute();
-        return $stmt;
-    }
-    
 
     /*
      * Modelo
