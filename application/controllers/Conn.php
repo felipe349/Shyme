@@ -415,7 +415,7 @@ limit 3;");
 
     public function excluirMembro($cdGrupo, $cdUsuario) {
         $db = $this->dbConn();
-        $stmt = $db->prepare("DELETE FROM aluno_grupo WHERE cd_matricula = ? AND cd_grupo = ?");
+        $stmt = $db->prepare("UPDATE aluno_grupo SET IC_ALUNO_GRUPO=0 WHERE cd_matricula = ? AND cd_grupo = ?");
         $stmt->bindParam(1, $cdUsuario);
         $stmt->bindParam(2, $cdGrupo);
         $stmt->execute();

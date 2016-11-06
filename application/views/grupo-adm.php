@@ -20,19 +20,17 @@
     <div class="container-fluid">
         <div class="row">
             <div class="navbar-grupo">
-                <nav class="navbar navbar-inverse  col-md-offset-1 col-md-10 col-xs-12">
-                        <ul class="nav navbar-nav col-md-12 col-xs-12" >
-                            <li class="nav-item active col-md-4 col-xs-4">
-                              <a class="nav-link" href="Grupo?id=<?php echo $_GET['id']; ?>">Postagens <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item col-md-4 col-xs-4">
-                              <a class="nav-link" href="Grupo?id=<?php echo $_GET['id']; ?>&pg=2">Membros</a>
-                            </li>
-                            <li class="nav-item col-md-4 col-xs-4">
-                              <a class="nav-link" href="Grupo?id=<?php echo $_GET['id']; ?>&pg=3">Informações</a>
-                            </li>
-                        </ul>
-                </nav>
+                
+            <nav class="navbar navbar-inverse bg-faded col-md-offset-1 col-md-10">
+                    <ul class="nav navbar-nav col-md-12">
+                        <li class="nav-item  col-md-6">
+                          <a class="nav-link" href="Grupo?id=<?php echo $_GET['id']; ?>">Postagens <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active col-md-6">
+                          <a class="nav-link " href="Grupo?id=<?php echo $_GET['id']; ?>&pg=2">Membros</a>
+                        </li>
+                    </ul>
+            </nav>
             <div>
             <section id="main-content">
                 <div class="text-center">
@@ -81,7 +79,7 @@
                 <form method="POST">
                         <div class="post-objeto">
                         <input type="hidden" id="cdpost" value="<?php echo $resP['CD_POSTAGEM']; ?>">
-                        <input type="button" class="close remover-post" id="exculirPost" name="exculirPost" value="x">
+                        <a class="close remover-post" href="Grupo?id=<?php echo $_GET['id']; ?>&remover=<?php echo $resP['CD_POSTAGEM']; ?>">X</a>
                             <div class="media-left">
                                 <img class="media-object" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
                             </div>

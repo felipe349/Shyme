@@ -86,17 +86,25 @@ public function index(){
                 $db1->excluirGrupo($_GET['id']);
             }
 
-            if(isset($_GET['excluirPost'])){
-                echo $_GET['excluirPost'];
+            if(isset($_GET['remover'])){
+                echo $_GET['remover'];
                 $db1 = new Conn();
-                $db1->excluirPostagem($_GET['excluirPost']);
-                             header("Refresh:0");
+                $db1->excluirPostagem($_GET['remover']);
+                             header("Location : Grupo?id= ".$_GET['id']);
+
+            }
+            if(isset($_GET['removerMembro'])){
+                echo $_GET['removerMembro'];
+                $db1 = new Conn();
+                $db1->excluirMembro($_GET['id'],$_GET['removerMembro']);
+                             header("Location : Grupo?id= ".$_GET['id']);
 
             }
             if(isset($_GET['pg'])){
                if($_GET['pg']==2){
                     $grupo = new Grupo();
                     $data['membros']= $grupo->listarMembros($_GET['id']);
+                    $data['info']= $grupo->listarInfoGrupos($_GET['id']);
 
                     $this->load->helper('url');
                     if($grupoAdmVer == 1){
@@ -105,16 +113,6 @@ public function index(){
                         $this->load->view('grupo-membro',$data);
                     }
                         
-                }
-                else if($_GET['pg']==3){
-                    $grupo = new Grupo();
-                    $data['info']= $grupo->listarInfoGrupos($_GET['id']);
-                    $this->load->helper('url');
-                    if($grupoAdmVer == 1){
-                        $this->load->view('grupo-info-adm',$data);           
-                    }else{
-                        $this->load->view('grupo-info',$data);
-                    }
                 }
             } else{
                 $db = new Conn();
