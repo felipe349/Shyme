@@ -19,37 +19,69 @@ h3{
     min-height: 150px;
 }
 
-.img-perfil, .usr-info, .pts-usr {
-    height: 130px;
+.box-img-perfil,.img-perfil, .usr-info, .pts-usr {
+    height: 180px;
 }
 
+.box-img-perfil{
+    background-color: transparent;
+    width: 180px;
+    padding-top: 0;
+    padding-left: 0;
+}
+.box-img-perfil a{
+    color: #fff;
+}
+
+.box-img-perfil a:hover{
+    background-color: #05747E;
+    color: #000;
+    background-color: rgba(22, 140, 151, 0.2);
+
+    
+}
 .img-perfil{
     background-color: #000;
-    width: 130px;
-    padding-top: 10px;
+    width: 180px;
+    padding-top: 0px;
+    padding-left: 0px;
+    border-radius: 15px;
+    border: 4px solid #157F89;
+    -webkit-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.3);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
 }
+
 .img-perfil a{
     color: #fff;
+
 }
 
 .img-perfil a:hover{
     background-color: #05747E;
     color: #000;
     background-color: rgba(22, 140, 151, 0.2);
-    
+
+
 }
 .hoverzoom > .img-perfil{
 
-        width:120px;
-        height:160px; 
-    border-radius: 2px;
+        width:180px;
+        height:180px; 
+    border-radius: 15px;
     -webkit-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
         -moz-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
          -ms-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
           -o-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
              transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
+
+
 }
 .hoverzoom:hover > .img-perfil {
+
     -webkit-transform: scale(1.5);
        -moz-transform: scale(1.5);
         -ms-transform: scale(1.5);
@@ -60,23 +92,24 @@ h3{
     top: 0%;
     left:0%;
     position: absolute;
-        width:130px;
-        height:130px;
+        width:180px;
+        height:180px;
     opacity: 0;    
-    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.2);   
+    background: none repeat scroll 0 0 rgba(13, 13, 13, 0.4);   
     text-align: center;
     padding: 0px;
- 
     -webkit-transition:  all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
         -moz-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
          -ms-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
           -o-transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000);
              transition: all 1.8s cubic-bezier(.190, 1.000, .220, 1.000); 
+    border-radius: 15px;
+    margin: 0px 0 0 0;
+
 }
 .hoverzoom:hover .retina {
     opacity: 1;
 
-    
 }
 .hoverzoom .retina p {
     color: #fff;
@@ -84,18 +117,26 @@ h3{
 }
 .hoverzoom .retina a {
     display: block;
-    width: 130px;
+    width: 180px;
     background: rgba(5, 116, 126, 1);
     color: #fff;
     text-decoration: none;
     text-align: center;
-    margin: 110px 0 0 0;
-    box-shadow: 0px -6px 8px rgba(13, 13, 13, 0.2);
+    margin: 156px 0 0 0;
+    padding: 2px;
+    -webkit-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.3);
+-moz-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.3);
+box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.3);
 }
+
 .perfil_top{
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0px 0px 2px 5px rgba(22, 140, 151, 0.08);
-    border-radius: 15px;
+    background-color: rgba(245, 245,245, 1);
+    border-radius: 5px;
+    height: 200px;
+    -webkit-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
+    border: 1px solid #c9c9c9;
 }
 
 .usr-info {
@@ -129,9 +170,12 @@ h3{
 .div-comunicado, .div-noticias {
     border: 1px solid #eee;
     background-color: #fff;
-    box-shadow: 0px 0px 2px 5px rgba(22, 140, 151, 0.08);
+    -webkit-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
+    border: 1px solid #c9c9c9;
     padding: 2px 0 2px 15px;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .div-noticias {
@@ -160,19 +204,34 @@ h3{
     cursor: pointer;
 } 
 #add_grupo_principal:hover {
-  color: black;  
+    color: black;  
 }
 .list-group h4{
     text-align: center;
+    height: 30px;
+    background-color: #fff;
+    margin-bottom: -1px;
+    padding-top: 5px;
+    padding-bottom:5px;
+    position:relative;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid #c9c9c9;
+    -webkit-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
 }
 .list-group-item{
-    height: 40px;
+    height: 30px;
     background-color: #fff;
-    margin-bottom: 5px;
-    border-radius: 150px;
-    box-shadow: 0px 0px 2px 5px rgba(22, 140, 151, 0.05);
-    padding-bottom:10px;
+    margin-bottom: -1px;
+    padding-top: 5px;
+    padding-bottom:5px;
     position:relative;
+    border: 1px solid #c9c9c9;
+    -webkit-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 25px -4px rgba(0,0,0,0.1);
 }
 .list-group-item p {
     display: block;
@@ -180,11 +239,14 @@ h3{
     clear:top;
 }
 
+
 .list-group-item a:hover{
+    
+}
+.list-group .list-group-item:hover{
     background-color: rgba(22, 140, 151, 0.5);
     vertical-align: center;
-    border-radius: 15px;
-    box-shadow: 0px 0px 2px 5px rgba(22, 140, 151, 0.05);
+    box-shadow: 0px 0px 2px 5px rgba(22, 140, 151, 0.05)
 }
 .tornar_grupo_principal{
     float: left;
