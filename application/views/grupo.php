@@ -22,14 +22,11 @@
             <div class="navbar-grupo">
                 <nav class="navbar navbar-inverse  col-md-offset-1 col-md-10 col-xs-12">
                         <ul class="nav navbar-nav col-md-12 col-xs-12" >
-                            <li class="nav-item active col-md-4 col-xs-4">
+                            <li class="nav-item active col-md-6 col-xs-4">
                               <a class="nav-link" href="Grupo?id=<?php echo $_GET['id']; ?>">Postagens <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item col-md-4 col-xs-4">
-                              <a class="nav-link" href="Grupo?id=<?php echo $_GET['id']; ?>&pg=2">Membros</a>
-                            </li>
-                            <li class="nav-item col-md-4 col-xs-4">
-                              <a class="nav-link" href="Grupo?id=<?php echo $_GET['id']; ?>&pg=3">Informações</a>
+                            <li class="nav-item col-md-6 col-xs-4">
+                              <a class="nav-link" href="Grupo?id=<?php echo $_GET['id']; ?>&pg=2">Grupo</a>
                             </li>
                         </ul>
                 </nav>
@@ -194,7 +191,7 @@
                 <?php  $i=0; foreach($resultadoP as $resP) { if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 33) { ?>
                         <div class="post-objeto">
                             <div class="media-left">
-                                <img class="media-object" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
+                                <img class="media-object foto-usuario-post" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
                             </div>
 
                             <div class="media-body">
@@ -214,7 +211,7 @@
                 <?php } else if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 26) { ?>
                         <div class="post-objeto">
                             <div class="media-left">
-                                <img class="media-object" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
+                                <img class="media-object foto-usuario-post" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
                             </div>
                             <div class="media-body">
                                 <a href="#">
@@ -254,7 +251,7 @@
                                     <!--AQUI TERMINA A PARTE DA RESPOSTA DA DUVIDA!!!!!!-->
                                      <!--AQUI COMEÇA A PARTE DE CAMPO DE RESPOSTA!!!!!!-->
                                      <div class="post-responder col-md-offset-0 col-md-12">
-                                        <a class="btn btn-primary" role="button" href="Duvida?id=<?php echo $resP['CD_POSTAGEM'];?>">Responder</a>
+                                        <a class="btn btn-shyme-default" role="button" href="Duvida?id=<?php echo $resP['CD_POSTAGEM'];?>">Responder</a>
                                     </div>
                                      <!--AQUI TERMINA A PARTE DE CAMPO DE RESPOSTA!!!!!!-->
                             </div>
