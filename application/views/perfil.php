@@ -20,15 +20,14 @@
                 <div class="col-md-offset-1 col-md-10 base perfil_top">
                     <div class="row-img ">
                         
-                        <div class=" img-perfil col-md-2 col-xs-2">
-                                <img src="<?php echo $_SESSION['imagem']; ?>" width="100" height="100" />
+                        <div class=" box-img-perfil col-md-2 col-xs-2">
+                                <div class="contorno-img-perfil "><img class="img-perfil "  style="background-image: url(<?php echo $_SESSION['imagem']; ?>);"/></div>
                                 <div class="hoverzoom">
-                                    <span class="img-perfil"> &nbsp</span>
                                     <div class="retina">
                                         <a href="#" data-toggle="modal" data-target="#myModal">Alterar Imagem</a>
                                     </div>
                                 </div>
-                        </div> 
+                        </div>  
                         
                         <!-- Modal -->
                         <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -63,7 +62,7 @@
             <div class="row">
                 <!--Alteração-->
                 <div class="col-md-offset-1 col-md-2 list-group usr-group">
-                    <h4 id="titulo_menu_lateral">Grupos Principais
+                    <h4 id="titulo_menu_lateral"><b>Grupos Principais</b>
                       <a href="#" data-toggle="modal" data-target="#myModaladd"><span   class="glyphicon glyphicon-plus"></span></a> 
                       <a href="#" data-toggle="modal" data-target="#myModal1"><span  class="glyphicon glyphicon-cog"></span></a>
                     </h4>
@@ -72,7 +71,7 @@
 
                     <a class="list-group-item" href='<?php echo "Grupo?id=".$res["CD_GRUPO"]?>'><p> <?php echo $res['NM_GRUPO']; ?></p></a>
                      <?php } ?>
- 			        <h4 id="titulo_menu_lateral">Grupos Secundarios
+ 			        <h4 id="titulo_menu_lateral"><b>Grupos Secundarios</b>
                         
                     </h4>
                      <?php foreach($grupoSecundario as $res3){?>
