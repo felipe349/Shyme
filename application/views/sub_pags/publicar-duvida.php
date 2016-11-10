@@ -23,8 +23,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <button   class="btn btn-shyme-default btn-post" data-toggle="modal" data-target="#myModal2">Publicar</button>
-
+                                    <button   class="btn btn-shyme-default btn-post" data-toggle="modal" data-target="#myModal5">Publicar</button>
                                 </div>
                                 <!-- </alteracao> -->
                             </div>
@@ -33,7 +32,7 @@
                 </div>
 
                 <!-- Modal -->
-                        <div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -41,7 +40,7 @@
                                         <h4 class="modal-title" id="myModalLabel">Valor da Duvida</h4>
                                     </div>
                                     <div class="modal-body">
-                                          <?php include("sub_pags/valor-tempo-duvida.php"); ?>
+                                          <?php include("valor-duvida.php"); ?>
                                     </div>
                                       
                                     <div class="modal-footer">

@@ -31,13 +31,15 @@
             
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <div align="center" class="sc-bar">
+                    <div align="center" class="sc-bar" >
                         <input id="sc_box" class="form-control sb_input" type="text" name="q" placeholder="Procurar" />
                         
-                        <button type="submit" class="btn btn-default sb_search">
-                            <span class="glyphicon glyphicon-search"></span>
+                        <button type="submit" class="btn btn-default sb_search" title="Procurar pessoas ou grupos">
+                            <span class="glyphicon glyphicon-search search-icon"></span>
                         </button>
-                    </div>
+                    </div> 
+                    
+                    
                     
                     
                     <div class="sb_dropdown">
@@ -52,49 +54,106 @@
                 
                 
             </form>
-         
+            
 
             <ul class="nav navbar-nav navbar-right dropdown-ul"><!-- Dropdown Usuario.-->
                 <div id="container-moeda">
-                    <img src="<?php echo asset_url(); ?>img/coin.png" " />
+                    <img src="<?php echo asset_url(); ?>img/coin.png"  />
                     <p> <!-- Exemplo --><!-- Exemplo --> <?php 
                            echo $_SESSION['moeda'];  
                         ?>
                     </p>
                 </div>
                 <li class="icon-li">
-                    <a href="#"class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon bell icon-nav glyphicon-bell"></span></a>
+                    <a href="#"class="dropdown-toggle " data-toggle="dropdown" title="Notificações" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon bell icon-nav glyphicon-bell"></span></a>
                     <ul class="dropdown-menu dropdown-notification">
-                        <a href="#"><div class="notification-objeto">
-                            <table>
-                                <tr>
-                                    <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario">
-</td>
-                                    <td ><h4 class="media-heading titulo-notification">Titulo</h4></td>
-                                </tr>
-                                <tr>
-                                     <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p>
-</td>
-                                </tr>
-                            </table>
-                        </div></a>
-
-                        <a href="#"><div class="notification-objeto">
-                            <table>
-                                <tr>
-                                    <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario">
-</td>
-                  
-                  <td ><h4 class="media-heading titulo-notification">Titulo</h4></td>
-                                </tr>
-                                <tr>
-                                     <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p>
-</td>
-                                </tr>
-                            </table>
-                        </div></a>
-                        
-                        <li role="separator" class="divider"></li>
+                        <div class="triangle"></div>
+                        <div class="scroll"> 
+                            <a href="#"><div class="notification-objeto">
+                                <table>
+                                    <tr>
+                                        <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario">
+    </td>
+                                        <td ><h4 class="media-heading titulo-notification">Titulo</h4></td>
+                                    </tr>
+                                    <tr>
+                                         <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p>
+    </td>
+                                    </tr>
+                                </table>
+                            </div></a>
+                            <a href="#"><div class="notification-objeto">
+                                <table>
+                                    <tr>
+                                        <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario">
+    </td>
+                      
+                      <td ><h4 class="media-heading titulo-notification">Titulo</h4></td>
+                                    </tr>
+                                    <tr>
+                                         <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p>
+    </td>
+                                    </tr>
+                                </table>
+                            </div></a>
+                            <a href="#"><div class="notification-objeto">
+                                <table>
+                                    <tr>
+                                        <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario">
+    </td>
+                      
+                      <td ><h4 class="media-heading titulo-notification">Titulo</h4></td>
+                                    </tr>
+                                    <tr>
+                                         <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p>
+    </td>
+                                    </tr>
+                                </table>
+                            </div></a>
+                            <a href="#"><div class="notification-objeto">
+                                <table>
+                                    <tr>
+                                        <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario">
+    </td>
+                      
+                      <td ><h4 class="media-heading titulo-notification">Titulo</h4></td>
+                                    </tr>
+                                    <tr>
+                                         <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p>
+    </td>
+                                    </tr>
+                                </table>
+                            </div></a>
+                            <a href="#"><div class="notification-objeto">
+                                <table>
+                                    <tr>
+                                        <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario">
+    </td>
+                      
+                      <td ><h4 class="media-heading titulo-notification">Titulo</h4></td>
+                                    </tr>
+                                    <tr>
+                                         <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p>
+    </td>
+                                    </tr>
+                                </table>
+                            </div></a>
+                            <a href="#"><div class="notification-objeto">
+                                <table>
+                                    <tr>
+                                        <td rowspan=2><img class="media-object img-notification" src="" alt="Icone usuario">
+    </td>
+                      
+                      <td ><h4 class="media-heading titulo-notification">Titulo</h4></td>
+                                    </tr>
+                                    <tr>
+                                         <td ><p class="descricao-notification">descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição descrição </p>
+    </td>
+                                    </tr>
+                                </table>
+                            </div></a>
+                            
+                            
 
                               <?php
                         /*
@@ -110,16 +169,18 @@
                             }
                         */
                         ?>
-                        
-                        <li><a href="#">Ver Mais</a></li> <!-- Fechar a session quando clicar em sair, ver acima -->
+                        </div>
+
+                        <center><a href="#"><li class="Ver-mais-notificacoes"><p>Ver tudo</p></li></a></center> <!-- Fechar a session quando clicar em sair, ver acima -->
                     </ul>
                 </li>
                 <li class="icon-li">
-                    <a href="Perfil"  role="button" ><span class="glyphicon home icon-nav glyphicon-home"></span></a>
+                    <a href="Perfil"  title="Página Inicial"  role="button" ><span class="glyphicon icon-nav glyphicon-home home"></span></a>
                 </li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo strtok($_SESSION['nome'], ' ')?><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu dropdown-user">
+                        <div class="triangle"></div>
                         <li><a id="change-theme" href="#">Mudar tema</a></li>
                         <li><a href="#">Pontuação</a></li>
                         <li role="separator" class="divider"></li>
@@ -146,8 +207,7 @@
             <!-- Dropdown Usuario.-->
                 
             
-                
-            
+           
                 
             </ul>
             

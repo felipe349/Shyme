@@ -21,21 +21,21 @@
         </div>
 
         <div class="row">
-        <div class="scroll"> 
-            <form>
-            <?php foreach($membros as $i){ ?>
-                <div class="post-objeto col-md-offset-1 col-md-6">
-                 
-                    <label>
-                      <input type="radio" name="adm" id="cd" value="<?php echo $i['cd_matricula']; ?>" />
-                      <img src="http://eyosongive.us/lolk/data/img/aatrox_1.jpg" class="imagem">
-                      <p> <?php echo $i['nm_aluno']; ?></p>
-                    </label>
-                </div>
-                <?php } ?> 
-            </form>
-        </div>
-        
+          <div class="scroll"> 
+              <form>
+              <?php foreach($membros as $membro){ ?>
+                  <div class="objeto-tornar-adm col-md-4">
+                   
+                      <center><label>
+                        <input type="radio" name="adm" id="cd" value="<?php echo $membro['cd_matricula']; ?>" />
+                        <img class="foto-usuario-post" src="<?php echo $membro['img_aluno']; ?>" alt="Icone usuario">
+                        <p> <?php echo $membro['nm_aluno']; ?></p>
+                      </label></center>
+                  </div>
+                  <?php } ?> 
+              </form>
+          </div>
+        <div>
         
         
         <div class="col-md-offset-2 col-md-8">
@@ -127,11 +127,11 @@
 
 
 
-       $('#asd').click(function() {
+        <!--$('#asd').click(function() {
                     var privacidade = "";
                      $('input:checkbox[id=a]').each(function() {
     if ($(this).is(':checked'))
      privacidade =parseInt($(this).val());
                     })
 alert(privacidade);
-});
+});*/-->
