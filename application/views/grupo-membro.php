@@ -47,7 +47,7 @@
 
                                 <img class="media-object  img-grupo-info" src="<?php echo $i['IMG_GRUPO']; ?>" >
                                 <div class="hoverzoom">
-                                    <span class="img-perfil"></span>
+                                    <span class="img-grupo-info"></span>
                                     <div class="retina">
                                         <a href="#" data-toggle="modal" data-target="#myModal2">Alterar Imagem</a>
                                     </div>
@@ -108,7 +108,8 @@
                    <?php  foreach($membros as $membro){ ?>
                         
 
-                        <div class="post-objeto membro-objeto col-md-4">
+                        <div class="post-objeto membro-objeto col-md-4 col-sm-6">
+                            <img class="crown-adm" src="<?php echo asset_url(); ?>img/crown.png" style="height:40px;width: 40px;position:absolute;top:4px;left:-6px;"/>
                             <div class="media-left">
                                 <img class="media-object foto-membro" src="<?php echo $membro['img_aluno']; ?>" alt="Icone usuario">
                             </div>

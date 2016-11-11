@@ -21,7 +21,7 @@
                     <div class="row-img ">
                         
                         <div class=" box-img-perfil col-md-2 col-xs-2">
-                                <div class="contorno-img-perfil "><img class="img-perfil "  style="background-image: url(<?php echo $_SESSION['imagem']; ?>);"/></div>
+                                <div class="contorno-img-perfil "><img class="img-perfil "  style="background-image: url(<?php echo $_SESSION['imagem']; ?>);border:0px;"/></div>
                                 <div class="hoverzoom">
                                     <div class="retina">
                                         <a href="#" data-toggle="modal" data-target="#myModal">Alterar Imagem</a>

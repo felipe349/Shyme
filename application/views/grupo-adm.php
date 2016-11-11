@@ -23,30 +23,30 @@
                 
             <nav class="navbar navbar-inverse bg-faded col-md-offset-1 col-md-10">
                     <ul class="nav navbar-nav col-md-12">
-                        <li class="nav-item  col-md-6">
+                        <li class="nav-item active col-md-6">
                           <a class="nav-link" href="Grupo?id=<?php echo $_GET['id']; ?>">Postagens <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item active col-md-6">
-                          <a class="nav-link " href="Grupo?id=<?php echo $_GET['id']; ?>&pg=2">Membros</a>
+                        <li class="nav-item col-md-6">
+                          <a class="nav-link " href="Grupo?id=<?php echo $_GET['id']; ?>&pg=2">Grupo</a>
                         </li>
                     </ul>
             </nav>
             <div>
             <section id="main-content">
-                <div class="text-center">
-                    <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Comunicado</button>
-                    <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Duvida</button>
-                    <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Material</button>
-                </div>
-                <div class="row titulo">
+                <center><div>
+                <button onclick="comun()" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Comunicado</button>
+                <button onclick="duvid()" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Duvida</button>
+                <button onclick="mater()" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Material</button>
+                </div></center>
+                <div id="com" class="row titulo">
                     <div class="col-md-offset-1 col-md-10">
-                        <h3>Postagens</h3>
+                        <h3>Postar Comunicado</h3>
 
                         <div class="row">
-                            <div class="col-md-5 objeto-postar">
+                            <div class="col-md-10 objeto-postar">
                                 <div>
                                     <!-- <alteracao> -->
-                                    <form method="post">
+                                    <form method="POST">
                                         <div class="form-group">
                                             <textarea class="form-control" placeholder="Digite alguma coisa para postar." name="txt_content_post" rows="3"></textarea>
                                         </div>
@@ -54,15 +54,89 @@
                                             <div class="form-group">
                                                 <!-- USAR O NAME -->
 
-                                                <button class="btn btn-shyme-default btn-anexar"><span id="anexar_arquivo" class="glyphicon glyphicon-paperclip"></span>Anexar</button>
-                                                <select id="sel_tipoPost" class="form-control" name="select">
-                                      <option id="opt_tipo" selected hidden>Tipo de postagem</option>
-                                      <option value="opt_comunicado">Comunicado</option>
-                                      <option value="opt_duvida">Dúvida</option>
-                                      <option value="opt_material">Material</option>
-                                    </select>
+                                                <button class="btn btn-shyme-default btn-anexar"><span id="anexar_arquivo" class="glyphicon glyphicon-paperclip"></span>Anexar Imagem</button>
+                                                
 
-                                                <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post" name="submit">Criar postagem</button>
+                                                <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post" name="comunicado">Criar postagem</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- </alteracao> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="duv" class="row titulo">
+                    <div class="col-md-offset-1 col-md-10">
+                        <h3>Postar Dúvida</h3>
+
+                        <div class="row">
+                            <div class="col-md-10 objeto-postar">
+                                <div>
+                                    <!-- <alteracao> -->
+                                    <form method="POST">
+                                        <div class="form-group">
+                                            <textarea class="form-control" placeholder="Digite alguma coisa para postar." name="txt_content_post" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <!-- USAR O NAME -->
+
+                                                <button class="btn btn-shyme-default btn-anexar"><span id="anexar_arquivo" class="glyphicon glyphicon-paperclip"></span>Anexar Imagem</button>
+                                                
+
+                                                <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post" data-toggle="modal" name="duvida" data-target="#myModal">Criar postagem</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- </alteracao> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                        <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Upload foto de perfil</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                          <?php include("sub_pags/valor-tempo-duvida.php"); ?>
+                                    </div>
+                                      
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default btn-shyme-default" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div> <!-- Modal content -->
+                            </div><!-- Modal dialog -->
+                        </div> <!-- modal -->
+
+                <div id="mat" class="row titulo">
+                    <div class="col-md-offset-1 col-md-10">
+                        <h3>Postar Material</h3>
+
+                        <div class="row">
+                            <div class="col-md-10 objeto-postar">
+                                <div>
+                                    <!-- <alteracao> -->
+                                    <form>
+                                        <div class="form-group">
+                                            <textarea class="form-control" placeholder="Digite alguma coisa para postar." name="txt_content_post" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <!-- USAR O NAME -->
+
+                                                <button class="btn btn-shyme-default btn-anexar"><span id="anexar_arquivo" class="glyphicon glyphicon-paperclip"></span>Anexar Imagem</button>
+                                                
+
+                                                <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post">Criar postagem</button>
                                             </div>
                                         </div>
                                     </form>
@@ -79,9 +153,9 @@
                 <form method="POST">
                         <div class="post-objeto">
                         <input type="hidden" id="cdpost" value="<?php echo $resP['CD_POSTAGEM']; ?>">
-                        <a class="close remover-post" href="Grupo?id=<?php echo $_GET['id']; ?>&remover=<?php echo $resP['CD_POSTAGEM']; ?>">X</a>
+                        <a class="close remover-post" href="Grupo?id=<?php echo $_GET['id']; ?>&remover=<?php echo $resP['CD_POSTAGEM']; ?>"><span class="glyphicon glyphicon-remove"></a>
                             <div class="media-left">
-                                <img class="media-object" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
+                                <img class="media-object foto-usuario-post" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
                             </div>
 
                             <div class="media-body">
@@ -101,8 +175,9 @@
                     </form>
                 <?php } else if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 26) { ?>
                         <div class="post-objeto">
+                            <a class="close remover-post" href="Grupo?id=<?php echo $_GET['id']; ?>&remover=<?php echo $resP['CD_POSTAGEM']; ?>"><span class="glyphicon glyphicon-remove"></a>
                             <div class="media-left">
-                                <img class="media-object" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
+                                <img class="media-object foto-usuario-post" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
                             </div>
                             <div class="media-body">
                                 <a href="#">
