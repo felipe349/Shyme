@@ -34,6 +34,13 @@ class Usuario extends CI_Controller {
             if($valorPreparadoadm->rowCount()>0){
                 $_SESSION["grupoAdm"] = 1;
             }
+            $valorPreparadoPOINT = $valor->pontuacaoTotal($_SESSION['id']);
+            if($valorPreparadoPOINT->rowCount()>0){
+              $p = $valorPreparadoPOINT->fetch();
+                $_SESSION["points"] = $p['SUM(QT_PONTO)'];
+            }else{
+               $_SESSION["points"] =0;
+            }
             return 1;
         } else {
             return 0;

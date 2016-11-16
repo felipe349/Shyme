@@ -53,7 +53,7 @@
                             <h3><?php echo $_SESSION['curso']; ?></h3> <!-- banco -->
                         </div>
                         
-                        <div class="col-md-1 pts-usr"><p><?php echo $_SESSION['moeda']; ?></p></div><!-- banco -->
+                        <div class="col-md-1 pts-usr"><p><?php echo $_SESSION['points']; ?></p></div><!-- banco -->
                     </div>    
                     
                 </div>    

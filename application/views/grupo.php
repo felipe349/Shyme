@@ -145,51 +145,16 @@
                         </div>
                     </div>
                 </div>
-            <!--<div>
-            <section id="main-content">
-                <div class="text-center">
-                    <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Comunicado</button>
-                    <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Duvida</button>
-                    <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post">Publicar Material</button>
-                </div>
-                <div class="row titulo">
-                    <div class="col-md-offset-1 col-md-10">
-                        <h3>Postagens</h3>
-
-                        <div class="row">
-                            <div class="col-md-5 objeto-postar">
-                                <div>
-
-                                    <form method="post">
-                                        <div class="form-group">
-                                            <textarea class="form-control" placeholder="Digite alguma coisa para postar." name="txt_content_post" rows="3"></textarea>
-                                        </div>
-                                        <div class="form-inline">
-                                            <div class="form-group">
-
-
-                                                <button class="btn btn-shyme-default btn-anexar"><span id="anexar_arquivo" class="glyphicon glyphicon-paperclip"></span>Anexar</button>
-                                                <select id="sel_tipoPost" class="form-control" name="select">
-                                      <option id="opt_tipo" selected hidden>Tipo de postagem</option>
-                                      <option value="opt_comunicado">Comunicado</option>
-                                      <option value="opt_duvida">Dúvida</option>
-                                      <option value="opt_material">Material</option>
-                                    </select>
-
-                                                <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post" name="submit">Criar postagem</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
+           
 
                 <div class="row">
                     <div class="col-md-offset-1 col-md-10 conteudo">
-                <?php  $i=0; foreach($resultadoP as $resP) { if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 33) { ?>
+            <?php  $i=0; foreach($resultadoP as $resP) { if($resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 33 || $resP['TIPO_POSTAGEM_cd_tipo_postagem'] == 32) { ?>
+
                         <div class="post-objeto">
+                        <?php if($resP['CD_MATRICULA'] == $_SESSION['id'] ){ ?>
+                             <a class="close remover-post" href="Grupo?id=<?php echo $_GET['id']; ?>&remover=<?php echo $resP['CD_POSTAGEM']; ?>"><span class="glyphicon glyphicon-remove"></a>
+                             <?php } ?>
                             <div class="media-left">
                                 <img class="media-object foto-usuario-post" src="<?php echo $resP['img_aluno']; ?>" alt="Icone usuario">
                             </div>

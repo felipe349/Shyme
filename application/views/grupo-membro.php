@@ -109,7 +109,9 @@
                         
 
                         <div class="post-objeto membro-objeto col-md-4 col-sm-6">
+                        <?php if($membro['adm_aluno_grupo'] !== null ){ ?>
                             <img class="crown-adm" src="<?php echo asset_url(); ?>img/crown.png" style="height:40px;width: 40px;position:absolute;top:4px;left:-6px;"/>
+                            <?php } ?>
                             <div class="media-left">
                                 <img class="media-object foto-membro" src="<?php echo $membro['img_aluno']; ?>" alt="Icone usuario">
                             </div>
@@ -158,8 +160,7 @@
             var url_atual = location.search.slice(1);
             var items = url_atual.split("&");
             var data = "sairGrupo=1";
-            var url  = '.././index.php/Grupo?'+items[0]+'&'+items[1];
-            alert('oi');
+            var url  = '.././index.php/Grupo?'+items[0]+'&'+items[1]+'&'+data;
         $.ajax({
             type: 'GET',
             url: url,
@@ -169,7 +170,6 @@
                 
             }
         });
-        header('Location:Perfil'); 
     });
     });
                 

@@ -192,7 +192,10 @@
                         
 
                         <div class="post-objeto membro-objeto col-md-4">
-                            <a href="" class="close remover-membro"><span class="glyphicon glyphicon-remove"></a>
+                            <a href="Grupo?id=<?php echo $_GET['id']; ?>&pg=2&removerMembro=<?php echo $membro['cd_matricula']; ?>" class="close remover-membro"><span class="glyphicon glyphicon-remove"></a>
+                        <?php if($membro['adm_aluno_grupo'] !== null ){ ?>
+                            <img class="crown-adm" src="<?php echo asset_url(); ?>img/crown.png" style="height:40px;width: 40px;position:absolute;top:4px;left:-6px;"/>
+                            <?php } ?>
                             <div class="media-left">
                                 <img class="media-object foto-membro" src="<?php echo $membro['img_aluno']; ?>" alt="Icone usuario">
                             </div>

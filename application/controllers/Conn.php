@@ -4,7 +4,7 @@
 class Conn extends CI_Controller {
 
     public function dbConn() {
-        return new PDO("mysql:host=localhost;dbname=db_shyme_2", "root", "");
+        return new PDO("mysql:host=localhost;dbname=db_shyme", "root", "");
     }
      public function listarResposta($idPostagem){
         $db = $this->dbConn();
@@ -66,17 +66,10 @@ class Conn extends CI_Controller {
         return $st;
     }
 
-    public function teste($idGrupo, $nmGrupo){
-        $db = $this->dbConn();
-        $st = $db->prepare("INSERT INTO TESTE VALUES(?,?)");
-        $st->bindParam(1, $nmGrupo);
-        $st->bindParam(2, $idGrupo);
-        $st->execute();
-        return $st;
-    }
+    
     public function sairGrupo($idGrupo, $cdMatricula){
         $db = $this->dbConn();
-        $st = $db->prepare("UPDATE ALUNO_GRUPO SET IC_ALUNO_GRUPO=0, IC_PRIORIDADE = 0 WHERE CD_MATRICULA=? AND CD_GRUPO = ?");
+        $st = $db->prepare("UPDATE ALUNO_GRUPO SET IC_ALUNO_GRUPO=0, PRIORIDADE_GRUPO = 0, adm_aluno_grupo=null WHERE CD_MATRICULA=? AND CD_GRUPO = ?");
         $st->bindParam(1, $cdMatricula);
         $st->bindParam(2, $idGrupo);
         $st->execute();
@@ -117,6 +110,13 @@ class Conn extends CI_Controller {
         $st->execute();
         return $st;
     }
+    public function pontuacaoTotal($cdUsuario) {
+            $db = $this->dbConn();
+            $st = $db->prepare("SELECT SUM(QT_PONTO) FROM PONTO_ALUNO WHERE cd_matricula=?");
+            $st->bindParam(1, $cdUsuario);
+            $st->execute();
+            return $st;
+        }
 
     public function selectStud($nmAluno) {
     $nmAluno = "%".$nmAluno."%";
@@ -126,15 +126,31 @@ class Conn extends CI_Controller {
         $stmt->execute();
         return $stmt;
     }
-    public function adicionarComunicado($prioridade, $idAluno, $texto, $idGrupo, $imagem) {
+    public function adicionarComunicado($prioridade, $idAluno, $texto, $idGrupo, $imagem, $tpPost) {
         $db = $this->dbConn();
         $st = $db->prepare("INSERT INTO POSTAGEM (cd_prioridade,cd_aluno_grupo,TIPO_POSTAGEM_cd_tipo_postagem,ds_postagem,dt_postagem,img_postagem)
-         VALUES(?,(SELECT CD_ALUNO_GRUPO FROM ALUNO_GRUPO WHERE CD_MATRICULA=? AND CD_GRUPO=?),33,?,NOW(),?);");
+         VALUES(?,(SELECT CD_ALUNO_GRUPO FROM ALUNO_GRUPO WHERE CD_MATRICULA=? AND CD_GRUPO=?),?,?,NOW(),?);");
         $st->bindParam(1, $prioridade);
         $st->bindParam(2, $idAluno);
         $st->bindParam(3, $idGrupo);
-        $st->bindParam(4, $texto);
-        $st->bindParam(5, $imagem);
+        $st->bindParam(4, $tpPost);
+        $st->bindParam(5, $texto);
+        $st->bindParam(6, $imagem);
+        return $st->execute();
+    }
+    public function verificarPrioridadeGrupo($idAluno, $idGrupo){
+        $db = $this->dbConn();
+        $st = $db->prepare("SELECT PRIORIDADE_GRUPO, CD_ALUNO_GRUPO FROM ALUNO_GRUPO WHERE CD_MATRICULA = ? AND CD_GRUPO = ?");
+        $st->bindParam(1, $idAluno);
+        $st->bindParam(2, $idGrupo);
+        return $st->execute();
+    }
+
+    public function TESTE($idAluno, $idGrupo){
+        $db = $this->dbConn();
+        $st = $db->prepare("SELECT PRIORIDADE_GRUPO, CD_ALUNO_GRUPO FROM ALUNO_GRUPO WHERE CD_MATRICULA = ? AND CD_GRUPO = ?");
+        $st->bindParam(1, $idAluno);
+        $st->bindParam(2, $idGrupo);
         return $st->execute();
     }
 
@@ -174,8 +190,7 @@ class Conn extends CI_Controller {
     }
     public function nomearAdm($idAluno,$nmGrupo) {
         $db = $this->dbConn();
-        $st = $db->prepare("INSERT INTO ADMINISTRADOR_GRUPO (cd_grupo,cd_administrador,dt_adm_grupo) 
-            VALUES (?,?,NOW())");
+        $st = $db->prepare("UPDATE ALUNO_GRUPO SET adm_aluno_grupo = NOW() WHERE CD_GRUPO = ? AND CD_MATRICULA=?");
         $st->bindParam(1,$nmGrupo);
         $st->bindParam(2,$idAluno);
         $st->execute();
@@ -192,7 +207,7 @@ class Conn extends CI_Controller {
 //FALTA COMPLETAR TOTALMENTE, FALTA COISAAAAS
     public function listarPostagem($idGrupo) {
         $db = $this->dbConn();
-        $stmt = $db->prepare("SELECT AG.CD_ALUNO_GRUPO, A.NM_ALUNO, A.img_aluno, P.DS_POSTAGEM, P.TIPO_POSTAGEM_cd_tipo_postagem, P.CD_POSTAGEM  FROM ALUNO_GRUPO AG, ALUNO A, POSTAGEM P WHERE  AG.CD_GRUPO = ? AND P.CD_ALUNO_GRUPO = AG.CD_ALUNO_GRUPO AND AG.CD_MATRICULA = A.CD_MATRICULA AND P.IC_POSTAGEM = 1 order by p.dt_postagem desc");
+        $stmt = $db->prepare("SELECT AG.CD_ALUNO_GRUPO,A.CD_MATRICULA, A.NM_ALUNO, A.img_aluno, P.DS_POSTAGEM, P.TIPO_POSTAGEM_cd_tipo_postagem, P.CD_POSTAGEM  FROM ALUNO_GRUPO AG, ALUNO A, POSTAGEM P WHERE  AG.CD_GRUPO = ? AND P.CD_ALUNO_GRUPO = AG.CD_ALUNO_GRUPO AND AG.CD_MATRICULA = A.CD_MATRICULA AND P.IC_POSTAGEM = 1 order by p.dt_postagem desc");
          $stmt->bindParam(1, $idGrupo);
         $stmt->execute();
         return $stmt;
@@ -258,9 +273,7 @@ limit 3;");
 
     public function selectMembers($cdGrupo) {
         $db = $this->dbConn();
-        $stmt = $db->prepare("SELECT a.cd_matricula, a.nm_aluno, a.img_aluno "
-                . "FROM ALUNO_GRUPO ag, aluno a "
-                . "WHERE ag.cd_matricula = a.cd_matricula AND ag.cd_grupo = ?");
+        $stmt = $db->prepare("SELECT a.cd_matricula, a.nm_aluno, a.img_aluno, ag.adm_aluno_grupo FROM ALUNO_GRUPO ag, aluno a WHERE ag.cd_matricula = a.cd_matricula AND ag.cd_grupo = ? and ag.IC_ALUNO_GRUPO = 1 order by ag.adm_aluno_grupo desc");
         $stmt->bindParam(1, $cdGrupo);
         $stmt->execute();
         return $stmt;
@@ -274,12 +287,33 @@ limit 3;");
      * @param2 - código do grupo
      */
 
-    public function adicionarMembro($cdGrupo, $cdUsuario) {
+    public function verificarMembro($cdGrupo, $cdUsuario) {
         $db = $this->dbConn();
-        $stmt = $db->prepare("INSERT INTO aluno_grupo (cd_grupo, cd_matricula,prioridade_grupo,IC_ALUNO_GRUPO) "
-                . "VALUES (?, ?,0,1)");
+        $stmt = $db->prepare("SELECT cd_matricula from aluno_grupo where cd_grupo= ? and cd_matricula = ?");
         $stmt->bindParam(1, $cdGrupo);
         $stmt->bindParam(2, $cdUsuario);
+        $stmt->execute();
+        if($stmt->rowCount() > 0){
+            $upda = $db->prepare("UPDATE ALUNO_GRUPO set ic_aluno_Grupo = 1 where cd_matricula = ? and cd_grupo = ?");
+            $upda->bindParam(1, $cdUsuario);
+            $upda->bindParam(2, $cdGrupo);
+            $upda->execute();
+            return $upda;
+        }else{
+            $upda = $db->prepare("INSERT INTO aluno_grupo (cd_grupo, cd_matricula,prioridade_grupo,IC_ALUNO_GRUPO) VALUES (?,?,0,1);");
+            $upda->bindParam(1, $cdGrupo);
+            $upda->bindParam(2, $cdUsuario);
+            $upda->execute();
+            return $upda;
+        }
+        
+    }
+
+    public function adicionarMembro($cdGrupo, $cdUsuario) {
+        $db = $this->dbConn();
+        $stmt = $db->prepare("call adicionarMembro(?,?)");
+        $stmt->bindParam(2, $cdGrupo);
+        $stmt->bindParam(1, $cdUsuario);
         $stmt->execute();
         return $stmt;
     }

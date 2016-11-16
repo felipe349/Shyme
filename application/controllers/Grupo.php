@@ -76,28 +76,35 @@ public function index(){
             }
 
             if(isset($_GET['sairGrupo'])){
+                
                 $db1 = new Conn();
-                echo $_GET['id'].$_SESSION['id'];
-                $db1->sairGrupo($_GET['id'],$_SESSION['id']);
+               $a =  $db1->sairGrupo($_GET['id'],$_SESSION['id']);
+               if($a->rowCount() !== 0){
+                header("Location:Perfil");
+            }else{
+                echo '<script>alert("nao");</script>';
+            }
             }
 
             if(isset($_GET['excluirGrupo'])){
                 $db1 = new Conn();
                 $db1->excluirGrupo($_GET['id']);
+                header("Location:Perfil");
             }
 
             if(isset($_GET['remover'])){
-                echo $_GET['remover'];
+                $idpost = $_GET['remover'];
+                $idgru = $_GET['id'];
                 $db1 = new Conn();
-                $db1->excluirPostagem($_GET['remover']);
-                             header("Location : Grupo?id= ".$_GET['id']);
+                $db1->excluirPostagem($idpost);
+                header("Location:Grupo?id= ".$idgru);
 
             }
             if(isset($_GET['removerMembro'])){
                 echo $_GET['removerMembro'];
                 $db1 = new Conn();
                 $db1->excluirMembro($_GET['id'],$_GET['removerMembro']);
-                             header("Location : Grupo?id= ".$_GET['id']);
+                             header("Location:Grupo?id=".$_GET['id']."&pg=2");
 
             }
             if(isset($_GET['pg'])){
@@ -146,15 +153,23 @@ public function index(){
                 }
                 
                 if(isset($_POST['comunicado'])){
+
                     $prioridade = 1;
                     $imagem = "";
+                    $tpPost = "";
                     $texto = $_POST['txt_content_post'];
-                    $arquivo = "";
                     $idGrupo = $_GET['id'];
                     $idAluno = $_SESSION['id']; 
-                    //Adiciona comunicado
-                         $db->adicionarComunicado($prioridade, $idAluno, $texto, $idGrupo, $imagem);
-                         header("Refresh:0");
+                    $pg = $db->TESTE($_SESSION['id'],$_GET['id']);
+                    foreach ($pg as $p) {
+                        if($p['PRIORIDADE_GRUPO'] == 1){
+                            $tpPost = 32;
+                        }else{
+                            $tpPost = 33;
+                        }
+                    }                    
+                         $db->adicionarComunicado($prioridade, $idAluno, $texto, $idGrupo, $imagem,$tpPost);
+                         //header("Refresh:0");
                 }
 
                 if(isset($_POST['duvida'])){
@@ -185,9 +200,9 @@ public function index(){
                 $db = new Conn();
                 $db->alterarInfoGrupo($_GET['id'],$_GET['dsgru'],$_GET['nomegru']);
             }
-            if(isset($_POST['q'])){
+            if(isset($_POST['addmembro'])){
                 $db = new Conn();
-                $result = $db->adicionarMembro($_GET['id'], $_POST['q']);
+                $result = $db->verificarMembro($_GET['id'], $_POST['addmembro']);
                 if ($result->rowCount() !== 0) {
                     echo "Adicionado com sucesso!";
                 } else {
@@ -196,7 +211,7 @@ public function index(){
             }
             if(isset($_POST['cdadm'])){
                 $db = new Conn();
-                $result = $db->nomearAdm($_GET['id'], $_POST['cdadm']);
+                $result = $db->nomearAdm( $_POST['cdadm'],$_GET['id']);
                 if ($result->rowCount() !== 0) {
                     echo "Adicionado com sucesso!";
                 } else {
