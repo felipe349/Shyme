@@ -25,9 +25,7 @@ a:hover, span:hover {
     border-radius: 0px;
     padding: 0;
     min-height: 32px;
-
     height: 36px;
-
 }
 
 
@@ -40,7 +38,6 @@ a:hover, span:hover {
 }
 .navbar-inverse .navbar-nav > li > a:hover{
     color:#fff;
-
     background-color: rgba(22, 140, 151, 0.5);
     -webkit-box-shadow: inset 0px 0px 25px -4px rgba(255,255,255,0.5);
     -moz-box-shadow: inset 0px 0px 25px -4px rgba(255,255,255,0.5);
@@ -61,9 +58,7 @@ a:hover, span:hover {
 .navbar-inverse .navbar-nav > .active > a:focus {
     color:#fff;
     background-color: rgba(22, 140, 151,1);
-
     font-weight: bold;
-
 }
 
 .navbar-inverse .navbar-nav > .active > a:after {
@@ -101,6 +96,9 @@ a:hover, span:hover {
 .post-objeto:hover .remover-membro{
     display:block;
 }
+.post-objeto-topo{
+    border:1px solid #0A656D; 
+}
 .remover-post{
     display:none; 
     position: absolute;
@@ -131,6 +129,7 @@ a:hover, span:hover {
     border-radius: 15px;
 
 }
+
 .objeto-postar input[type="text"] {
     width: 90%;
     padding: 50px 10px;
@@ -344,18 +343,18 @@ box-shadow: 0px -5px 28px -2px rgba(0,0,0,0.55);
     border-radius: 5px;
     background-color: rgba(125, 197, 204, 0.2);
 }
-label > input{ /* HIDE RADIO */
+label > .input-tornar-adm{ /* HIDE RADIO */
   visibility: hidden; /* Makes input not-clickable */
   position: absolute; /* Remove input from document flow */
 }
-label > input + img{ /* IMAGE STYLES */
+label > .input-tornar-adm + img{ /* IMAGE STYLES */
   cursor:pointer;
   border:2px solid transparent;
 }
-label > input + img:hover{ /* IMAGE STYLES */
+label > .input-tornar-adm + img:hover{ /* IMAGE STYLES */
   opacity: 0.8;
 }
-label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+label > .input-tornar-adm:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
   border:8px solid #05747E;
 }
 .central{
@@ -393,3 +392,8 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
     width: 100%;
 }
 
+.moeda-tornar-adm{
+    margin-top: -3px;
+    width: 20px;
+    height: 20px;
+}
