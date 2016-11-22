@@ -56,8 +56,26 @@
                                                 <button class="btn btn-shyme-default btn-anexar"><span id="anexar_arquivo" class="glyphicon glyphicon-paperclip"></span>Anexar Imagem</button>
                                                 
 
-                                                <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post" name="comunicado">Criar postagem</button>
                                             </div>
+                                            
+
+                                            <button   type="button" class="btn btn-shyme-default btn-post" data-toggle="modal"  data-target="#myModal2">Criar postagem</button>                                        </div>
+                                            <!-- Modal -->
+                                            <div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+
+                                                        <div class="modal-body">
+                                                              <?php include("sub_pags/postar-topo.php"); ?>
+                                                        </div>
+                                                          
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-shyme-default btn-post" name="comunicado">Criar postagem</button>
+                                                        </div>
+                                                    </div> <!-- Modal content -->
+                                                </div><!-- Modal dialog -->
+                                            </div> <!-- modal -->
+
                                         </div>
                                     </form>
                                 </div>
@@ -85,36 +103,33 @@
 
                                                 <button class="btn btn-shyme-default btn-anexar"><span id="anexar_arquivo" class="glyphicon glyphicon-paperclip"></span>Anexar Imagem</button>
                                                 
-
-                                                <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post" data-toggle="modal" name="duvida" data-target="#myModal">Criar postagem</button>
                                             </div>
-                                        </div>
+                                            <button   type="button" class="btn btn-shyme-default btn-post" data-toggle="modal"  data-target="#myModal">Criar postagem</button>                                        </div>
+                                            <!-- Modal -->
+                                            <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+
+                                                        <div class="modal-body">
+                                                              <?php include("sub_pags/postar-topo.php"); ?>
+                                                        </div>
+                                                          
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-default btn-shyme-default" name="duvida">Enviar</button>
+                                                        </div>
+                                                    </div> <!-- Modal content -->
+                                                </div><!-- Modal dialog -->
+                                            </div> <!-- modal -->
                                     </form>
                                 </div>
                                 <!-- </alteracao> -->
                             </div>
                         </div>
                     </div>
+                    
                 </div>
 
-                <!-- Modal -->
-                        <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Upload foto de perfil</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                          <?php include("sub_pags/valor-tempo-duvida.php"); ?>
-                                    </div>
-                                      
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default btn-shyme-default" data-dismiss="modal">Fechar</button>
-                                    </div>
-                                </div> <!-- Modal content -->
-                            </div><!-- Modal dialog -->
-                        </div> <!-- modal -->
+                
 
                 <div id="mat" class="row titulo">
                     <div class="col-md-offset-1 col-md-10">
@@ -134,9 +149,9 @@
 
                                                 <button class="btn btn-shyme-default btn-anexar"><span id="anexar_arquivo" class="glyphicon glyphicon-paperclip"></span>Anexar Imagem</button>
                                                 
+                                            </div>                                                
+                                            <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post">Criar postagem</button>
 
-                                                <button type="submit" id="bt_criar_post" class="btn btn-shyme-default btn-post">Criar postagem</button>
-                                            </div>
                                         </div>
                                     </form>
                                 </div>

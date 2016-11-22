@@ -27,7 +27,7 @@
                   <div class="objeto-tornar-adm col-md-4">
                    
                       <center><label>
-                        <input type="radio" name="adm" id="cd" value="<?php echo $membro['cd_matricula']; ?>" />
+                        <input class="input-tornar-adm" type="radio" name="adm" id="cd" value="<?php echo $membro['cd_matricula']; ?>" />
                         <img class="foto-usuario-post" src="<?php echo $membro['img_aluno']; ?>" alt="Icone usuario">
                         <p> <?php echo $membro['nm_aluno']; ?></p>
                       </label></center>
