@@ -10,8 +10,6 @@
                         </head>
                         <body>
                             <div class="navbar navbar-fixed-top">
-                                <?php include("header.php"); 
-                                ?>
                             </div>
                         <div class="post-objeto col-md-12">
                             <div class="media-left">
@@ -25,36 +23,68 @@
                                 <p><?php echo $resP['ds_postagem']; ?></p>
 
                                 <!-- <alteracao> -->
-                                <span id="fav_post" class="glyphicon glyphicon-star-empty"></span>
+                                
                                 <!-- </alteracao> -->
 
                                 <!-- <button class="btn-shyme-avaliar">-</button> -->
                                 <span class="span-tipo-post">Dúvida</span>
                                 </div>
-                                    <?php foreach($resultadoR as $resR) { ?>
-                                    <div class="post-resposta col-md-offset-1 col-md-11">
-                                    <div class="media-left">
-                                        <img class="media-object" src="" alt="Icone usuario">
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <h4 class="media-heading"><?php echo $resR['NM_ALUNO']; ?></h4>
-                                        </a>
-                                        <p><?php echo $resR['DS_RESPOSTA']; ?>
-                                        </p>
+                                    <?php foreach($resultadoR as $resR) {
+                                            if($resR['IC_RESPOSTA']==1){ ?>
+                                        <form method="post">
+                                            <div class="post-resposta col-md-offset-1 col-md-11" style="background-color: #012">
+                                                <div class="media-left">
+                                                    <img class="media-object" src="" alt="Icone usuario">
+                                                </div>
+                                                <div class="media-body">
+                                                    <a href="#">
+                                                        <h4 class="media-heading"><?php echo $resR['NM_ALUNO']; ?></h4>
+                                                    </a>
+                                                    <p><?php echo $resR['DS_RESPOSTA']; ?>
+                                                    </p>
+                                                    <input type="hidden" value='<?php echo $resR['CD_RESPOSTA']; ?>' name="id">
+                                                    <!-- <alteracao> -->
+                                                    <?php if($dono == 1 && $escolha == 0) { ?>
+                                                    <button class="btn btn-primary" name="escolher">Escolher Resposta</button><br/>
+                                                    <?php } ?>
+                                                
+                                                <!-- </alteracao> -->
 
-                                        <!-- <alteracao> -->
-                                        <span id="fav_post" class="glyphicon glyphicon-star-empty"></span>
-                                        <!-- </alteracao> -->
+                                                <!-- <button class="btn-shyme-avaliar">-</button> -->
+                                                <span class="span-tipo-post">Resposta Correta</span>
+                                                </div>
+                                                <div class="media-right">
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <?php } else { ?>
+                                            <form method="post">
+                                                     <div class="post-resposta col-md-offset-1 col-md-11">
+                                                    <div class="media-left">
+                                                        <img class="media-object" src="" alt="Icone usuario">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <a href="#">
+                                                            <h4 class="media-heading"><?php echo $resR['NM_ALUNO']; ?></h4>
+                                                        </a>
+                                                        <p><?php echo $resR['DS_RESPOSTA']; ?>
+                                                        </p>
+                                                        <input type="hidden" value='<?php echo $resR['CD_RESPOSTA']; ?>' name="id">
+                                                        <!-- <alteracao> -->
+                                                        <?php if($dono == 1 && $escolha == 0) { ?>
+                                                        <button class="btn btn-primary" name="escolher">Escolher Resposta</button><br/>
+                                                        <?php } ?>
+                                                    
+                                                    <!-- </alteracao> -->
 
-                                        <!-- <button class="btn-shyme-avaliar">-</button> -->
-                                        <span class="span-tipo-post">Resposta</span>
-                                    </div>
-                                    <div class="media-right">
-                                        <span id="resposta-certa" class="glyphicon glyphicon glyphicon-heart-empty" data-toggle="modal" data-target="#myModal2"></span>
-                                    </div>
-                                </div>
-                                <?php } ?>
+                                                    <!-- <button class="btn-shyme-avaliar">-</button> -->
+                                                    <span class="span-tipo-post">Resposta</span>
+                                                    </div>
+                                                    <div class="media-right">
+                                                    </div>
+                                                </div>
+                                        </form>
+                                <?php }} ?>
                                 <?php } ?>
                                 <div class="col-md-offset-1 col-md-11">
                                     <center>
