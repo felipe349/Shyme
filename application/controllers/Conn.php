@@ -262,6 +262,17 @@ limit 3;");
         $st->execute();
         return $st;
     }
+
+    public function pesquisarAG($texto) {
+        $texto = "%" . $texto . "%";
+        $db = $this->dbConn();
+        $st = $db->prepare('(SELECT 0 nm_aluno, g.nm_grupo FROM GRUPO g WHERE g.nm_grupo LIKE '%fA%' LIMIT 100) UNION ALL (SELECT a.nm_aluno, 0 nm_grupo FROM ALUNO a WHERE a.nm_aluno LIKE '%fe%' LIMIT 100)');
+        $st->bindParam(1, $texto);
+        $st->bindParam(2, $texto);
+        $st->execute();
+        return $st;
+    }
+
   public function pesquisarAlunoGrupo($texto) {
         //$texto = "%" . $texto . "%";
         $db = $this->dbConn();

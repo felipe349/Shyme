@@ -1,17 +1,19 @@
 <head>
     <link rel="stylesheet" href="<?php echo asset_url(); ?>css/header.css" />
+    <script src="<?php echo asset_url(); ?>js/header.js"></script>
+    <script src="<?php echo asset_url(); ?>js/jquery.min.js"></script>
     <script>
-    $(document).ready(function() {
-        $( '.dropdown' ).hover(
-            function(){
-                $(this).children('.sub-menu').slideDown(200);
-            },
-            function(){
-                $(this).children('.sub-menu').slideUp(200);
-            }
-        );
-    }); // end ready
-</script>
+        $(document).ready(function(){
+            $( '.dropdown' ).hover(
+                function(){
+                    $(this).children('.sub-menu').slideDown(200);
+                },
+                function(){
+                    $(this).children('.sub-menu').slideUp(200);
+                }
+            );
+        }); // end ready
+    </script>
 </head>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -214,7 +216,6 @@
         </div>
         
     </div>
-    <script src="<?php echo asset_url(); ?>js/header.js"></script>
-    <script src="<?php echo asset_url(); ?>js/jquery.min.js"></script>
+
 
 </nav>
