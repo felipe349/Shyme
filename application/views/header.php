@@ -13,6 +13,30 @@
                 }
             );
         }); // end ready
+        $(document).ready(function(){
+           $('#sc_box2').keyup(function(){
+               //$('#pessoas').html($('#name_user').val());
+               var type = '&qType=usuario';
+               var dado = 'q='+$('#sc_box2').val()+type;
+               $.ajax({
+                  type: 'POST',
+                  url: '.././index.php/SearchControl',
+                  data: dado,
+                  dataType: 'json',
+                  success: function(data){
+                      if(data){
+                          var nome = "";
+                          var a = 0;
+                          var i;
+                          $('#pessoas-ul').empty();
+                          for(i=0;i<data.length;i++){
+                              $('#pessoas-ul').html("<a id='res' href='#"+data[i].cd_matricula+"'><li>"+data[i].nm_aluno+"</li></a>");
+                          }
+                      }
+                  }
+               });
+           });
+        });
     </script>
 </head>
 <nav class="navbar navbar-default">
@@ -34,7 +58,8 @@
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <div align="center" class="sc-bar" >
-                        <input id="sc_box" class="form-control sb_input" type="text" name="q" placeholder="Procurar" />
+                        <input id="sc_box2" class="form-control sb_input" type="text" name="q" placeholder="Procurar" />
+                        <div id="pessoas-ul"></div>
                         
                         <button type="submit" class="btn btn-default sb_search" title="Procurar pessoas ou grupos">
                             <span class="glyphicon glyphicon-search search-icon"></span>
